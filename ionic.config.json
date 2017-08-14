@@ -7,5 +7,6 @@
       "path": "/zju",
       "proxyUrl": "http://webpac.zju.edu.cn"
     }
-  ]
+  ],
+  "integrations": {}
 }
