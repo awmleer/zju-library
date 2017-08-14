@@ -12,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LibraryService} from "../services/library.service";
 import {HttpModule} from "@angular/http";
+import {BookDetailPageModule} from "../pages/book-detail/book-detail.module";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {HttpModule} from "@angular/http";
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    BookDetailPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

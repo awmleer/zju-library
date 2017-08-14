@@ -33,5 +33,11 @@ export class LibraryService {
     });
   }
 
+  bookDetail(base,id){
+    return this.http.get(CONFIG.libraryUrl+'/F/8AUFJHGX6F5FVJX2KBGMKRE4E6A2832TL2YCC3RXJF1CX9P6CR-18682'+`?func=find-b&find_code=SYS&local_base=${base}&request=${id}`).toPromise().then((response:Response)=>{
+      console.log(response.text());
+      return response.text();
+    })
+  }
 
 }

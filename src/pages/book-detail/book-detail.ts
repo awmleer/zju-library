@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {LibraryService} from "../../services/library.service";
 
-/**
- * Generated class for the BookDetailPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -14,8 +10,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'book-detail.html',
 })
 export class BookDetailPage {
+  id:string;
+  base:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private librarySvc: LibraryService
+  ) {}
+
+  ionViewWillLoad(){
+    this.id=this.navParams.get('id');
+    this.base=this.navParams.get('base');
+    this.librarySvc.bookDetail(this.base,this.id);
   }
 
   ionViewDidLoad() {

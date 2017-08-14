@@ -8,6 +8,7 @@
   <h2>Welcome to Ionic!</h2>
   <p *ngFor="let book of latestBooks">
     {{book.id}}<br>
-    {{book.title}}
+    {{book.title}}<br>
+    <a (click)="goBookDetail(book)">详情</a>
   </p>
 </ion-content>
