@@ -13,8 +13,13 @@ export class HomePage {
     private librarySvc: LibraryService
   ) {}
 
+  latestBooks=[];
+
   ionViewDidEnter(){
-    this.librarySvc.latestBooks();
+    this.librarySvc.latestBooks().then(books=>{
+      console.log(books);
+      this.latestBooks=books;
+    });
   }
 
 }
