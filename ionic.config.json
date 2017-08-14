@@ -1,5 +1,11 @@
 {
   "name": "zjuLibrary",
   "app_id": "",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/zju",
+      "proxyUrl": "http://webpac.zju.edu.cn"
+    }
+  ]
 }
