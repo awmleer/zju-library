@@ -7,4 +7,9 @@ export class LatestBook {
 export class BookDetail {
   id:string='';
   name:string='';
+  author:string='';
+  press:string='';
+  year:string='';
+  pageCount:number=null;
+
 }
