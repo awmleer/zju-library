@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {LibraryService} from "../services/library.service";
 import {HttpModule} from "@angular/http";
 import {BookDetailPageModule} from "../pages/book-detail/book-detail.module";
+import {ComponentsModule} from "../components/components.module";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {BookDetailPageModule} from "../pages/book-detail/book-detail.module";
     HttpModule,
     IonicModule.forRoot(MyApp),
     BookDetailPageModule,
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
