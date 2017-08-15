@@ -5,11 +5,14 @@
 </ion-header>
 
 <ion-content padding>
-
+  <search-box></search-box>
 
   <div class="latest-book-group">
     <span>最新图书</span>
-    <a *ngFor="let book of latestBooks" class="latest-book-link" (click)="goBookDetail(book)">{{book.title}}</a>
+    <div *ngFor="let book of latestBooks">
+      <a class="latest-book-link" (click)="goBookDetail(book)">{{book.title}}</a>
+      <br>
+    </div>
   </div>
 
 </ion-content>

@@ -1,3 +1,32 @@
 search-box {
+  div.search-box-root{
+    position: relative;
+    box-shadow: 0 0 10px 4px rgba(158, 158, 158, 0.1);
+    border-radius: 3px;
+  }
+  .search-icon{
+    position: absolute;
+    top: 14px;
+    left: 4px;
+  }
+  input.search-input{
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 3px;
 
+    padding: 6px 55px;
+    background-position: left 8px center;
+    height: auto;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 3rem;
+    color: #141414;
+    background-color: #fff;
+  }
+  input.search-input:focus, input.search-input:active{
+    outline: none;
+  }
 }
