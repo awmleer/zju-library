@@ -8,5 +8,7 @@
       "proxyUrl": "http://webpac.zju.edu.cn"
     }
   ],
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
