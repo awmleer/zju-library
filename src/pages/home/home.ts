@@ -30,7 +30,7 @@ export class HomePage {
     this.navCtrl.push(BookDetailPage,{
       id: book.id,
       base: book.base
-    })
+    });
   }
 
   search(){

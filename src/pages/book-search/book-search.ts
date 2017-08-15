@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {LibraryService} from "../../services/library.service";
 
 
 
@@ -9,12 +10,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'book-search.html',
 })
 export class BookSearchPage {
+  searchText:string;
+  loading:Loading;
+  setId:string;
+  totalCount:number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private librarySvc: LibraryService,
+    private loadingCtrl: LoadingController
+  ) {
+    this.searchText=navParams.get('searchText');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BookSearchPage');
+    this.search();
   }
+
+  search(){
+    this.loading=this.loadingCtrl.create({
+      spinner: 'dots',
+      content: '加载中...'
+    });
+    this.loading.present();
+    this.librarySvc.search(this.searchText).then((data)=>{
+      this.setId=data.setId;
+      this.totalCount=data.totalCount;
+    });
+  }
+
+
 
 }

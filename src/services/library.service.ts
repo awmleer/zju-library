@@ -145,4 +145,24 @@ export class LibraryService {
     });
   }
 
+
+  search(text:string):Promise<{setId:string;totalCount:number;}>{
+    return this.http.get(CONFIG.libraryUrl+'/X',{
+      params:{
+        'op':'find',
+        'code':'wrd',
+        'request':text,
+        'base':'ZJU01'
+      }
+    }).toPromise().then((response:Response)=>{
+      let xml=(new DOMParser()).parseFromString(response.text(),'text/xml');
+      return {
+        setId: xml.getElementsByTagName('set_number')[0].childNodes[0].nodeValue,
+        totalCount: parseInt(
+          xml.getElementsByTagName('no_records')[0].childNodes[0].nodeValue
+        )
+      }
+    });
+  }
+
 }
