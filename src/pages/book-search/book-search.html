@@ -10,4 +10,20 @@
 <ion-content padding>
   <search-box [(text)]="searchText" (doSearch)="search()"></search-box>
 
+  <div class="book-record-group">
+    <a class="book-record" *ngFor="let bookRecord of bookRecords" (click)="goBookDetail(bookRecord)">
+      <h2>
+        {{bookRecord.title}}
+      </h2>
+      <span>
+        {{bookRecord.author}}<br *ngIf="bookRecord.author">
+        {{bookRecord.press}} {{bookRecord.year}}
+      </span>
+    </a>
+  </div>
+
+  <div style="text-align: center" *ngIf="bookRecords.length">
+    <button ion-button clear small color="dark" (click)="loadRecords()">加载更多</button>
+  </div>
+
 </ion-content>

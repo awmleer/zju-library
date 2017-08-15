@@ -35,6 +35,9 @@ export class BookDetailPage {
   ionViewDidLoad(){
     this.id=this.navParams.get('id');
     this.base=this.navParams.get('base');
+    if (!this.base) {
+      this.base='ZJU01';
+    }
     this.librarySvc.bookDetail(this.base,this.id).then(book=>{
       console.log(book);
       this.book=book;

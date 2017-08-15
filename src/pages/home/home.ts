@@ -28,8 +28,8 @@ export class HomePage {
 
   goBookDetail(book:LatestBook){
     this.navCtrl.push(BookDetailPage,{
-      id: book.id,
-      base: book.base
+      'id': book.id,
+      'base': book.base
     });
   }
 

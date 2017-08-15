@@ -116,15 +116,19 @@ export class LibraryService {
         let item=new BookItem();
         let temp;
         temp=xmlItem.getElementsByTagName('call-no-1');
-        if(temp.length>0)item.callNumber=temp[0].childNodes[0].nodeValue;
+        if(temp.length>0&&temp[0].childNodes.length>0)
+          item.callNumber=temp[0].childNodes[0].nodeValue;
         temp=xmlItem.getElementsByTagName('barcode');
-        if(temp.length>0)item.barcode=temp[0].childNodes[0].nodeValue;
+        if(temp.length>0&&temp[0].childNodes.length>0)
+          item.barcode=temp[0].childNodes[0].nodeValue;
         temp=xmlItem.getElementsByTagName('sub-library');
-        if(temp.length>0)item.subLibrary=temp[0].childNodes[0].nodeValue;
+        if(temp.length>0&&temp[0].childNodes.length>0)
+          item.subLibrary=temp[0].childNodes[0].nodeValue;
         temp=xmlItem.getElementsByTagName('requested');
-        if(temp.length>0)item.requested=(temp[0].childNodes[0].nodeValue=='Y');
+        if(temp.length>0&&temp[0].childNodes.length>0)
+          item.requested=(temp[0].childNodes[0].nodeValue=='Y');
         temp=xmlItem.getElementsByTagName('status');
-        if(temp.length>0){
+        if(temp.length>0&&temp[0].childNodes.length>0){
           let statusCode=temp[0].childNodes[0].nodeValue;
           switch (statusCode){
             case '21': item.status='图书阅览';break;
@@ -134,11 +138,14 @@ export class LibraryService {
           }
         }
         temp=xmlItem.getElementsByTagName('loan-status');
-        if(temp.length>0)item.borrowed=(temp[0].childNodes[0].nodeValue=='A');
+        if(temp.length>0&&temp[0].childNodes.length>0)
+          item.borrowed=(temp[0].childNodes[0].nodeValue=='A');
         temp=xmlItem.getElementsByTagName('on-hold');
-        if(temp.length>0)item.onHold=(temp[0].childNodes[0].nodeValue=='Y');
+        if(temp.length>0&&temp[0].childNodes.length>0)
+          item.onHold=(temp[0].childNodes[0].nodeValue=='Y');
         temp=xmlItem.getElementsByTagName('loan-due-date');
-        if(temp.length>0)item.dueDate=temp[0].childNodes[0].nodeValue;
+        if(temp.length>0&&temp[0].childNodes.length>0)
+          item.dueDate=temp[0].childNodes[0].nodeValue;
         items.push(item);
       }
       return items;
@@ -180,15 +187,7 @@ export class LibraryService {
       for (let k = 0; k < records.length; k++) {
         let record=records[k];
         let book=new BookRecord();
-        let fixFields=record.getElementsByTagName('fixfield');
-        for (let i = 0; i < fixFields.length; i++) {
-          let fixField=fixFields[i];
-          let id=fixField.getAttribute('id');
-          let value=fixField.childNodes[0].nodeValue;
-          if (id == '001') {
-            book.id=value;
-          }
-        }
+        book.id=record.getElementsByTagName('doc_number')[0].childNodes[0].nodeValue;
         let varFields=record.getElementsByTagName('varfield');
         for(let i=0; i<varFields.length; i++){
           let varField=varFields[i];

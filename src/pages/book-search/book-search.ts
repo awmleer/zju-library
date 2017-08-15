@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IonicPage, Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {LibraryService} from "../../services/library.service";
 import {BookRecord} from "../../classes/book";
+import {BookDetailPage} from "../book-detail/book-detail";
 
 
 
@@ -17,7 +18,7 @@ export class BookSearchPage {
   totalCount:number;
   bulkLength:number=10;
   bookRecords:BookRecord[]=[];
-  recordStartNumber:number=1;
+  recordStartNumber:number;
 
   constructor(
     private navCtrl: NavController,
@@ -39,12 +40,15 @@ export class BookSearchPage {
 
   search(){
     this.loading.present();
+    this.totalCount=0;
+    this.bookRecords=[];
+    this.recordStartNumber=1;
     this.librarySvc.search(this.searchText).then((data)=>{
       this.setId=data.setId;
       this.totalCount=data.totalCount;
       this.loadRecords();
-      //TODO catch
     });
+    //TODO catch
   }
 
   loadRecords(){
@@ -53,6 +57,13 @@ export class BookSearchPage {
       this.recordStartNumber+=this.bulkLength;
       console.log(bookRecords);
       this.loading.dismiss();
+    });
+    //TODO catch
+  }
+
+  goBookDetail(bookRecord){
+    this.navCtrl.push(BookDetailPage,{
+      'id': bookRecord.id
     });
   }
 

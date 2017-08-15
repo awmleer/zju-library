@@ -1,3 +1,26 @@
 page-book-search {
-
+  .book-record-group{
+    padding:20px 0 0;
+    a.book-record{
+      color: #000;
+      display: block;
+      padding: 10px;
+      border-bottom: solid 1px #d5d5d5;
+      h2{
+        font-size: 22px;
+        font-weight: normal;
+        margin-bottom: 2px;
+      }
+      span{
+        color: #575757;
+        font-size: 14px;
+      }
+    }
+    a.book-record:last-of-type{
+      border-bottom: none;
+    }
+    a.book-record:active{
+      color: #8b8b8b;
+    }
+  }
 }
