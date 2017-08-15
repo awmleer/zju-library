@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {CONFIG} from "../app/config";
-import {BookDetail, LatestBook} from "../classes/book";
+import {BookDetail, BookItem, LatestBook} from "../classes/book";
 
 
 @Injectable()
@@ -11,7 +11,7 @@ export class LibraryService {
     private http: Http
   ) {}
 
-  latestBooks():Promise<any>{
+  latestBooks():Promise<LatestBook[]>{
     return this.http.get(
       CONFIG.libraryUrl+'/cgi-bin/newbook.cgi?base=ALL&cls=ALL&date=180'
     ).toPromise().then((response:Response)=>{
@@ -96,6 +96,52 @@ export class LibraryService {
         }
       }
       return book;
+    });
+  }
+
+
+  bookItems(base,id):Promise<BookItem[]>{
+    return this.http.get(CONFIG.libraryUrl+'/X',{
+      params:{
+        'op':'item-data',
+        'doc_num':id,
+        'base':base
+      }
+    }).toPromise().then((response:Response)=>{
+      let xml=(new DOMParser()).parseFromString(response.text(),'text/xml');
+      let items:BookItem[]=[];
+      let xmlItems=xml.getElementsByTagName('item');
+      for (let i = 0; i < xmlItems.length; i++) {
+        let xmlItem=xmlItems[i];
+        let item=new BookItem();
+        let temp;
+        temp=xmlItem.getElementsByTagName('call-no-1');
+        if(temp.length>0)item.callNumber=temp[0].childNodes[0].nodeValue;
+        temp=xmlItem.getElementsByTagName('barcode');
+        if(temp.length>0)item.barcode=temp[0].childNodes[0].nodeValue;
+        temp=xmlItem.getElementsByTagName('sub-library');
+        if(temp.length>0)item.subLibrary=temp[0].childNodes[0].nodeValue;
+        temp=xmlItem.getElementsByTagName('requested');
+        if(temp.length>0)item.requested=(temp[0].childNodes[0].nodeValue=='Y');
+        temp=xmlItem.getElementsByTagName('status');
+        if(temp.length>0){
+          let statusCode=temp[0].childNodes[0].nodeValue;
+          switch (statusCode){
+            case '21': item.status='图书阅览';break;
+            case '12': item.status='普通借阅';break;
+            case '11': item.status='编目中';break;
+            default: item.status='未知';
+          }
+        }
+        temp=xmlItem.getElementsByTagName('loan-status');
+        if(temp.length>0)item.borrowed=(temp[0].childNodes[0].nodeValue=='A');
+        temp=xmlItem.getElementsByTagName('on-hold');
+        if(temp.length>0)item.onHold=(temp[0].childNodes[0].nodeValue=='Y');
+        temp=xmlItem.getElementsByTagName('loan-due-date');
+        if(temp.length>0)item.dueDate=temp[0].childNodes[0].nodeValue;
+        items.push(item);
+      }
+      return items;
     });
   }
 

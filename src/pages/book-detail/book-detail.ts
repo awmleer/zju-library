@@ -21,17 +21,16 @@ export class BookDetailPage {
     private librarySvc: LibraryService
   ) {}
 
-  ionViewWillLoad(){
+  ionViewDidLoad(){
     this.id=this.navParams.get('id');
     this.base=this.navParams.get('base');
     this.librarySvc.bookDetail(this.base,this.id).then(book=>{
       console.log(book);
       this.book=book;
     });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BookDetailPage');
+    this.librarySvc.bookItems(this.base,this.id).then(bookItems=>{
+      console.log(bookItems);
+    })
   }
 
 }

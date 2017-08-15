@@ -17,7 +17,7 @@ export class HomePage {
 
   latestBooks:LatestBook[]=[];
 
-  ionViewDidEnter(){
+  ionViewDidLoad(){
     this.librarySvc.latestBooks().then(books=>{
       console.log(books);
       this.latestBooks=books;

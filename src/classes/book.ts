@@ -24,3 +24,15 @@ export class BookDetail {
   year:string;
   pageCount:number;
 }
+
+
+export class BookItem {
+  callNumber:string;
+  status:string;
+  barcode:string;
+  subLibrary:string;
+  requested:boolean=false;
+  onHold:boolean=false;
+  borrowed:boolean=false;
+  dueDate:string=null;
+}
