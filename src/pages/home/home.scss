@@ -1,3 +1,11 @@
 page-home {
-
+  .latest-book-group{
+    text-align: center;
+    .latest-book-link{
+      display: block;
+      width:100%;
+      text-align: center;
+      margin:12px 0;
+    }
+  }
 }

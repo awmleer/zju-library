@@ -5,14 +5,11 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <ion-card *ngFor="let book of latestBooks">
-    <ion-card-content>
-      <!-- Add card content here! -->
-      {{book.id}}<br>
-      {{book.title}}<br>
-      <a (click)="goBookDetail(book)">详情</a>
-    </ion-card-content>
-  </ion-card>
+
+
+  <div class="latest-book-group">
+    <span>最新图书</span>
+    <a *ngFor="let book of latestBooks" class="latest-book-link" (click)="goBookDetail(book)">{{book.title}}</a>
+  </div>
 
 </ion-content>
