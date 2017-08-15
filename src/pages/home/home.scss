@@ -1,7 +1,15 @@
 page-home {
+  .scroll-content{
+    padding-top: 20px!important;
+    padding-bottom: 50px!important;
+  }
   .latest-book-group{
-    padding-top: 20px;
+    padding-top: 35px;
     text-align: center;
+    span.header{
+      display: block;
+      margin-bottom: 10px;
+    }
     .latest-book-link{
       display: inline-block;
       //width:100%;

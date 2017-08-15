@@ -16,7 +16,7 @@
   <search-box [(text)]="searchText" (doSearch)="search()"></search-box>
 
   <div class="latest-book-group">
-    <span>最新图书</span>
+    <span class="header">最新图书</span>
     <div *ngFor="let book of latestBooks">
       <a class="latest-book-link" (click)="goBookDetail(book)">{{book.title}}</a>
       <br>
