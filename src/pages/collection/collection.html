@@ -6,6 +6,25 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <div class="book-collection-group" *ngIf="bookCollections.length>0">
+    <span class="total-count">
+      共{{bookCollections.length}}条收藏
+    </span>
+    <a class="book-collection" *ngFor="let bookCollection of bookCollections" (click)="goBookDetail(bookCollection)">
+      <h2>
+        {{bookCollection.title}}
+      </h2>
+      <span>
+        {{bookCollection.author}}<br *ngIf="bookCollection.author">
+        {{bookCollection.press}} {{bookCollection.year}}
+      </span>
+    </a>
+  </div>
 
+  <div *ngIf="bookCollections.length==0" class="no-collection">
+    <ion-icon name="ios-folder-open-outline"></ion-icon>
+    <br><br>
+    收藏夹空空如也
+  </div>
 </ion-content>

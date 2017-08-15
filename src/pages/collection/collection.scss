@@ -1,3 +1,38 @@
 page-collection {
-
+  .book-collection-group{
+    span.total-count{
+      display: block;
+      padding: 0 10px;
+    }
+    a.book-collection{
+      color: #000;
+      display: block;
+      padding: 14px 10px;
+      border-bottom: solid 1px #d5d5d5;
+      h2{
+        font-size: 22px;
+        font-weight: normal;
+        margin-bottom: 2px;
+      }
+      span{
+        color: #575757;
+        font-size: 14px;
+      }
+    }
+    a.book-collection:last-of-type{
+      border-bottom: none;
+    }
+    a.book-collection:active{
+      color: #8b8b8b;
+    }
+  }
+  div.no-collection{
+    width:100%;
+    text-align: center;
+    padding-top: 20vh;
+    color: #797979;
+    ion-icon{
+      font-size: 80px;
+    }
+  }
 }
