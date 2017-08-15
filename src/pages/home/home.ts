@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import {LibraryService} from "../../services/library.service";
 import {BookDetailPage} from "../book-detail/book-detail";
 import {LatestBook} from "../../classes/book";
+import {BookSearchPage} from "../book-search/book-search";
 
 @Component({
   selector: 'page-home',
@@ -34,6 +35,9 @@ export class HomePage {
 
   search(){
     console.log(this.searchText);
+    this.navCtrl.push(BookSearchPage,{
+      'searchText': this.searchText
+    });
   }
 
 }

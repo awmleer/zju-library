@@ -14,6 +14,7 @@ import {LibraryService} from "../services/library.service";
 import {HttpModule} from "@angular/http";
 import {BookDetailPageModule} from "../pages/book-detail/book-detail.module";
 import {ComponentsModule} from "../components/components.module";
+import {BookSearchPageModule} from "../pages/book-search/book-search.module";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {ComponentsModule} from "../components/components.module";
     HttpModule,
     IonicModule.forRoot(MyApp),
     BookDetailPageModule,
+    BookSearchPageModule,
     ComponentsModule
   ],
   bootstrap: [IonicApp],
