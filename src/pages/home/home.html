@@ -6,9 +6,13 @@
 
 <ion-content padding>
   <h2>Welcome to Ionic!</h2>
-  <p *ngFor="let book of latestBooks">
-    {{book.id}}<br>
-    {{book.title}}<br>
-    <a (click)="goBookDetail(book)">详情</a>
-  </p>
+  <ion-card *ngFor="let book of latestBooks">
+    <ion-card-content>
+      <!-- Add card content here! -->
+      {{book.id}}<br>
+      {{book.title}}<br>
+      <a (click)="goBookDetail(book)">详情</a>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
