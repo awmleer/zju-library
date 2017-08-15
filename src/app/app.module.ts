@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { CollectionPage } from '../pages/collection/collection';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -20,7 +20,7 @@ import {BookSearchPageModule} from "../pages/book-search/book-search.module";
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
+    CollectionPage,
     HomePage,
     TabsPage
   ],
@@ -36,7 +36,7 @@ import {BookSearchPageModule} from "../pages/book-search/book-search.module";
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
+    CollectionPage,
     HomePage,
     TabsPage
   ],
