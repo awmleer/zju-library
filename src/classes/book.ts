@@ -4,6 +4,16 @@ export class LatestBook {
   title:string;
 }
 
+export class BookRecord {
+  id:string;
+  ISBN:string;
+  title:string;
+  author:string;
+  editor:string;
+  press:string;
+  year:string;
+}
+
 export class BookDetail {
   id:string;
   ISBN:string;

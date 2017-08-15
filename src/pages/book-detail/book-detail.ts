@@ -27,7 +27,7 @@ export class BookDetailPage {
   ionViewWillLoad(){
     this.loading=this.loadingCtrl.create({
       spinner: 'dots',
-      content: '加载中...'
+      content: '加载中'
     });
     this.loading.present();
   }

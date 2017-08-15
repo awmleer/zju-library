@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {LibraryService} from "../../services/library.service";
+import {BookRecord} from "../../classes/book";
 
 
 
@@ -14,6 +15,9 @@ export class BookSearchPage {
   loading:Loading;
   setId:string;
   totalCount:number;
+  bulkLength:number=10;
+  bookRecords:BookRecord[]=[];
+  recordStartNumber:number=1;
 
   constructor(
     private navCtrl: NavController,
@@ -25,18 +29,30 @@ export class BookSearchPage {
   }
 
   ionViewDidLoad() {
+    this.loading=this.loadingCtrl.create({
+      spinner: 'dots',
+      content: '加载中'
+    });
     this.search();
+
   }
 
   search(){
-    this.loading=this.loadingCtrl.create({
-      spinner: 'dots',
-      content: '加载中...'
-    });
     this.loading.present();
     this.librarySvc.search(this.searchText).then((data)=>{
       this.setId=data.setId;
       this.totalCount=data.totalCount;
+      this.loadRecords();
+      //TODO catch
+    });
+  }
+
+  loadRecords(){
+    this.librarySvc.present(this.recordStartNumber,this.bulkLength,this.setId).then(bookRecords=>{
+      Array.prototype.push.apply(this.bookRecords,bookRecords);
+      this.recordStartNumber+=this.bulkLength;
+      console.log(bookRecords);
+      this.loading.dismiss();
     });
   }
 

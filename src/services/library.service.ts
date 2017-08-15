@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {CONFIG} from "../app/config";
-import {BookDetail, BookItem, LatestBook} from "../classes/book";
+import {BookDetail, BookItem, BookRecord, LatestBook} from "../classes/book";
 
 
 @Injectable()
@@ -162,6 +162,66 @@ export class LibraryService {
           xml.getElementsByTagName('no_records')[0].childNodes[0].nodeValue
         )
       }
+    });
+  }
+
+  present(start:number,length:number,setId:string):Promise<BookRecord[]>{
+    return this.http.get(CONFIG.libraryUrl+'/X',{
+      params:{
+        'op':'present',
+        'set_entry':`${start}-${start+length-1}`,
+        'set_number':setId,
+        'base':'ZJU01'
+      }
+    }).toPromise().then((response:Response)=>{
+      let xml=(new DOMParser()).parseFromString(response.text(),'text/xml');
+      let records=xml.getElementsByTagName('record');
+      let books:BookRecord[]=[];
+      for (let k = 0; k < records.length; k++) {
+        let record=records[k];
+        let book=new BookRecord();
+        let fixFields=record.getElementsByTagName('fixfield');
+        for (let i = 0; i < fixFields.length; i++) {
+          let fixField=fixFields[i];
+          let id=fixField.getAttribute('id');
+          let value=fixField.childNodes[0].nodeValue;
+          if (id == '001') {
+            book.id=value;
+          }
+        }
+        let varFields=record.getElementsByTagName('varfield');
+        for(let i=0; i<varFields.length; i++){
+          let varField=varFields[i];
+          let subFields=varField.getElementsByTagName('subfield');
+          for (let j=0; j<subFields.length; j++) {
+            let subField=subFields[j];
+            let id=varField.getAttribute('id');
+            let label=subField.getAttribute('label');
+            let nodeValue=subField.childNodes[0].nodeValue;
+            if (id=='200'){
+              if (label == 'a') {
+                book.title=nodeValue;
+              }else if (label == 'f') {
+                book.author=nodeValue;
+              }else if (label == 'g') {
+                book.editor=nodeValue;
+              }
+            }else if (id=='210') {
+              if (label == 'c') {
+                book.press=nodeValue;
+              }else if (label == 'd') {
+                book.year=nodeValue;
+              }
+            }else if (id == '010') {
+              if (label == 'a') {
+                book.ISBN=nodeValue;
+              }
+            }
+          }
+        }
+        books.push(book);
+      }
+      return books;
     });
   }
 
