@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {LibraryService} from "../../services/library.service";
-import {BookDetail} from "../../classes/book";
+import {BookDetail, BookItem} from "../../classes/book";
 
 
 
@@ -14,6 +14,7 @@ export class BookDetailPage {
   id:string;
   base:string;
   book:BookDetail;
+  items:BookItem[];
 
   constructor(
     public navCtrl: NavController,
@@ -28,8 +29,9 @@ export class BookDetailPage {
       console.log(book);
       this.book=book;
     });
-    this.librarySvc.bookItems(this.base,this.id).then(bookItems=>{
-      console.log(bookItems);
+    this.librarySvc.bookItems(this.base,this.id).then(items=>{
+      console.log(items);
+      this.items=items;
     })
   }
 

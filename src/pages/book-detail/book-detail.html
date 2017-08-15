@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <!--<ion-title>图书详情</ion-title>-->
+    <ion-title>图书详情</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -31,4 +31,12 @@
       装订类型 {{book.bindingType}}<br>
     </ion-card-content>
   </ion-card>
+  <div *ngIf="book && items" class="item-group">
+    <div *ngFor="let item of items" class="item">
+      <ion-badge *ngIf="item.borrowed" color="gray">已借出</ion-badge>
+      {{item.callNumber}}<br>
+      {{item.subLibrary}}<br>
+      <span *ngIf="item.dueDate">预计于{{item.dueDate}}归还</span>
+    </div>
+  </div>
 </ion-content>
