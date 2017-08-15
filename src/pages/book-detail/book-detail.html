@@ -32,7 +32,9 @@
     </ion-card-content>
   </ion-card>
   <div *ngIf="book && items" class="item-group">
+    <span>共{{items.length}}单册/{{borrowedItemsCount}}在借</span>
     <div *ngFor="let item of items" class="item">
+      <ion-badge *ngIf="item.requested" color="gray">被预约</ion-badge>
       <ion-badge *ngIf="item.borrowed" color="gray">已借出</ion-badge>
       {{item.callNumber}}<br>
       {{item.subLibrary}}<br>

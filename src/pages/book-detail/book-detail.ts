@@ -46,4 +46,14 @@ export class BookDetailPage {
     });
   }
 
+  get borrowedItemsCount():number{
+    let count=0;
+    for(let item of this.items){
+      if (item.borrowed) {
+        count++;
+      }
+    }
+    return count;
+  }
+
 }
