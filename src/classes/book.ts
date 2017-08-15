@@ -5,11 +5,22 @@ export class LatestBook {
 }
 
 export class BookDetail {
-  id:string='';
-  name:string='';
-  author:string='';
-  press:string='';
-  year:string='';
-  pageCount:number=null;
-
+  id:string;
+  ISBN:string;
+  classNumber:string;
+  // callNumber:string;
+  price:string;
+  bindingType:string;
+  name:string;
+  author:string;
+  editor:string;
+  press:{
+    name:string;
+    location:string;
+  }={
+    name:null,
+    location:null
+  };
+  year:string;
+  pageCount:number;
 }

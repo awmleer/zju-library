@@ -62,16 +62,36 @@ export class LibraryService {
           let id=varField.getAttribute('id');
           let label=subField.getAttribute('label');
           let nodeValue=subField.childNodes[0].nodeValue;
-          if (id=='200' && label=='a'){
-            book.name=nodeValue;
-          }else if (id=='200' && label=='f') {
-            book.author=nodeValue;
-          }else if (id=='210' && label=='c') {
-            book.press=nodeValue;
-          }else if (id == '210' && label == 'd') {
-            book.year=nodeValue;
+          if (id=='200'){
+            if (label == 'a') {
+              book.name=nodeValue;
+            }else if (label == 'f') {
+              book.author=nodeValue;
+            }else if (label == 'g') {
+              book.editor=nodeValue;
+            }
+          }else if (id=='210') {
+            if (label == 'c') {
+              book.press.name=nodeValue;
+            }else if (label == 'd') {
+              book.year=nodeValue;
+            }else if (label == 'a') {
+              book.press.location=nodeValue;
+            }
           }else if (id == '215' && label == 'a') {
             book.pageCount=parseInt(nodeValue);
+          }else if (id == '010') {
+            if (label == 'a') {
+              book.ISBN=nodeValue;
+            }else if (label == 'b') {
+              book.bindingType=nodeValue;
+            }else if (label == 'd') {
+              book.price=nodeValue;
+            }
+          }else if (id == '690') {
+            if (label == 'a') {
+              book.classNumber=nodeValue;
+            }
           }
         }
       }
