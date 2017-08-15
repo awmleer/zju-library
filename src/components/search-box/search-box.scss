@@ -1,8 +1,24 @@
 search-box {
-  div.search-box-root{
+  $transition-time: 300ms;
+  //position: relative;
+  div.search-box{
     position: relative;
     box-shadow: 0 0 10px 4px rgba(158, 158, 158, 0.1);
     border-radius: 3px;
+    width:100%;
+    transition: width $transition-time ease;
+    button.action-button{
+      position: absolute;
+      right:-100px;
+      top:-3px;
+      transition: right $transition-time ease;
+    }
+  }
+  div.search-box.focusing{
+    width:calc(100% - 45px);
+    button.action-button {
+      right: -62px;
+    }
   }
   .search-icon{
     position: absolute;
@@ -16,7 +32,6 @@ search-box {
     width: 100%;
     border: 0;
     border-radius: 3px;
-
     padding: 6px 55px;
     background-position: left 8px center;
     height: auto;
@@ -29,4 +44,5 @@ search-box {
   input.search-input:focus, input.search-input:active{
     outline: none;
   }
+
 }

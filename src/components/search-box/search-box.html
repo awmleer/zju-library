@@ -1,13 +1,9 @@
-<div class="search-box-root">
-  <!--<button class="cancel-button disable-hover button button-md button-clear button-clear-md button-clear-md-dark" clear="" color="dark" ion-button="" type="button">-->
-      <!--<span class="button-inner">-->
-        <!--<ion-icon name="md-arrow-back" role="img" class="icon icon-md ion-md-arrow-back" aria-label="arrow back"></ion-icon>-->
-      <!--</span>-->
-    <!--<div class="button-effect"></div>-->
-  <!--</button>-->
+<div class="search-box" [class.focusing]="focusing">
   <ion-icon name="search" class="search-icon"></ion-icon>
-  <input class="search-input" placeholder="搜索" type="search" autocomplete="off" autocorrect="off" spellcheck="false">
-  <button class="searchbar-clear-icon disable-hover button button-md button-clear button-clear-md" clear="" ion-button="" type="button"><span class="button-inner"></span>
-    <div class="button-effect"></div>
+  <input (focus)="focusing=true" (blur)="focusing=false" [(ngModel)]="text" class="search-input" placeholder="搜索" type="search" autocomplete="off" autocorrect="off" spellcheck="false">
+  <button ion-button clear icon-only color="dark" [class.has-text]="text" class="action-button" mode="ios">
+    <ion-icon name="md-done-all"></ion-icon>
   </button>
 </div>
+
+

@@ -6,12 +6,11 @@ import { Component } from '@angular/core';
   templateUrl: 'search-box.html'
 })
 export class SearchBoxComponent {
+  focusing:boolean=false;
 
   text: string;
 
-  constructor() {
-    console.log('Hello SearchBoxComponent Component');
-    this.text = 'Hello World';
-  }
+  constructor() {}
+
 
 }
