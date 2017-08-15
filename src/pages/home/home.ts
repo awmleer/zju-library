@@ -16,6 +16,7 @@ export class HomePage {
   ) {}
 
   latestBooks:LatestBook[]=[];
+  searchText:string='';
 
   ionViewDidLoad(){
     this.librarySvc.latestBooks().then(books=>{
@@ -29,6 +30,10 @@ export class HomePage {
       id: book.id,
       base: book.base
     })
+  }
+
+  search(){
+    console.log(this.searchText);
   }
 
 }

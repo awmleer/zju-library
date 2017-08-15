@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 
 @Component({
@@ -8,9 +8,15 @@ import { Component } from '@angular/core';
 export class SearchBoxComponent {
   focusing:boolean=false;
 
-  text: string;
+  @Input()text: string;
+  @Output()doSearch = new EventEmitter();
+  @Output() textChange:EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {}
 
+  actionButtonClicked(){
+    this.focusing=true;//prevent button sliding to right
+    this.doSearch.emit();
+  }
 
 }

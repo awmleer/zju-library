@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <search-box></search-box>
+  <search-box [(text)]="searchText" (doSearch)="search()"></search-box>
 
   <div class="latest-book-group">
     <span>最新图书</span>
