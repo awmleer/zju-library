@@ -18,6 +18,7 @@ import {BookSearchPageModule} from "../pages/book-search/book-search.module";
 import {IonicStorageModule} from "@ionic/storage";
 import {CollectionService} from "../services/collection.service";
 import {ToastService} from "../services/toast.service";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {ToastService} from "../services/toast.service";
     LibraryService,
     CollectionService,
     ToastService,
+    InAppBrowser,,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
