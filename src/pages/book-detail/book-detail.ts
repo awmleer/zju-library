@@ -3,6 +3,7 @@ import {IonicPage, Loading, LoadingController, NavController, NavParams} from 'i
 import {LibraryService} from "../../services/library.service";
 import {BookDetail, BookItem} from "../../classes/book";
 import {CollectionService} from "../../services/collection.service";
+import {ToastService} from "../../services/toast.service";
 
 
 
@@ -24,7 +25,8 @@ export class BookDetailPage {
     public navParams: NavParams,
     private librarySvc: LibraryService,
     private collectionSvc: CollectionService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private toastSvc: ToastService
   ) {}
 
   ionViewWillLoad(){
@@ -41,16 +43,42 @@ export class BookDetailPage {
     if (!this.base) {
       this.base='ZJU01';
     }
-    this.librarySvc.bookDetail(this.base,this.id).then(book=>{
-      console.log(book);
-      this.book=book;
-      this.isCollected=this.collectionSvc.isCollected(this.book.id);
-      this.librarySvc.bookItems(this.base,this.id).then(items=>{
-        console.log(items);
-        this.items=items;
-        this.loading.dismiss();
+    this.freshBookData().then(()=>{
+      this.loading.dismiss();
+    }).catch(()=>{
+      this.navCtrl.pop();
+      this.loading.dismiss();
+      this.toastSvc.toast('加载失败');
+    });
+  }
+
+  doRefresh(refresher){
+    this.freshBookData().then(()=>{
+      refresher.complete();
+    }).catch(()=>{
+      refresher.complete();
+      this.toastSvc.toast('加载失败');
+    })
+  }
+
+  freshBookData():Promise<null>{
+    return new Promise((resolve, reject) => {
+      this.librarySvc.bookDetail(this.base,this.id).then(book=>{
+        // console.log(book);
+        this.book=book;
+        this.isCollected=this.collectionSvc.isCollected(this.book.id);
+        this.librarySvc.bookItems(this.base,this.id).then(items=>{
+          // console.log(items);
+          this.items=items;
+          resolve();
+        }).catch(()=>{
+            reject();
+        });
+      }).catch(()=>{
+          reject();
       });
     });
+
   }
 
   get borrowedItemsCount():number{
