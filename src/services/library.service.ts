@@ -163,12 +163,18 @@ export class LibraryService {
       }
     }).toPromise().then((response:Response)=>{
       let xml=(new DOMParser()).parseFromString(response.text(),'text/xml');
+      if (xml.getElementsByTagName('error').length > 0) {//search error (eg. empty set)
+        return {
+          setId:null,
+          totalCount:0
+        };
+      }
       return {
         setId: xml.getElementsByTagName('set_number')[0].childNodes[0].nodeValue,
         totalCount: parseInt(
           xml.getElementsByTagName('no_records')[0].childNodes[0].nodeValue
         )
-      }
+      };
     });
   }
 

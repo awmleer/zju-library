@@ -13,9 +13,9 @@ import {BookDetailPage} from "../book-detail/book-detail";
 })
 export class BookSearchPage {
   searchText:string;
-  loading:Loading;
+  loading:Loading=null;
   setId:string;
-  totalCount:number;
+  totalCount:number=-1;
   bulkLength:number=10;
   bookRecords:BookRecord[]=[];
   recordStartNumber:number;
@@ -30,17 +30,27 @@ export class BookSearchPage {
   }
 
   ionViewDidLoad() {
-    this.loading=this.loadingCtrl.create({
-      spinner: 'dots',
-      content: '加载中'
-    });
     this.search();
+  }
 
+  showLoading(){
+    if (this.loading==null) {
+      this.loading=this.loadingCtrl.create({
+        spinner: 'dots',
+        content: '加载中'
+      });
+      this.loading.present();
+    }
+  }
+
+  dismissLoading(){
+    this.loading.dismiss();
+    this.loading=null;
   }
 
   search(){
-    this.loading.present();
-    this.totalCount=0;
+    this.showLoading();
+    this.totalCount=-1;
     this.bookRecords=[];
     this.recordStartNumber=1;
     this.librarySvc.search(this.searchText).then((data)=>{
@@ -52,11 +62,12 @@ export class BookSearchPage {
   }
 
   loadRecords(){
+    this.showLoading();
     this.librarySvc.present(this.recordStartNumber,this.bulkLength,this.setId).then(bookRecords=>{
       Array.prototype.push.apply(this.bookRecords,bookRecords);
       this.recordStartNumber+=this.bulkLength;
       console.log(bookRecords);
-      this.loading.dismiss();
+      this.dismissLoading();
     });
     //TODO catch
   }

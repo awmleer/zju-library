@@ -11,6 +11,7 @@
   <search-box [(text)]="searchText" (doSearch)="search()"></search-box>
 
   <div class="book-record-group">
+    <span *ngIf="totalCount>0" class="total-count">共{{totalCount}}条结果</span>
     <a class="book-record" *ngFor="let bookRecord of bookRecords" (click)="goBookDetail(bookRecord)">
       <h2>
         {{bookRecord.title}}
@@ -22,8 +23,14 @@
     </a>
   </div>
 
-  <div style="text-align: center" *ngIf="bookRecords.length">
-    <button ion-button clear small color="dark" (click)="loadRecords()">加载更多</button>
+  <div *ngIf="totalCount==0" class="no-record">
+    <ion-icon name="ios-archive-outline"></ion-icon><br>
+    没有查找到符合条件的图书
+  </div>
+
+  <div style="text-align: center" *ngIf="totalCount">
+    <button *ngIf="recordStartNumber<=totalCount" ion-button clear small color="dark" (click)="loadRecords()">加载更多</button>
+    <span *ngIf="recordStartNumber>totalCount">已全部加载完毕</span>
   </div>
 
 </ion-content>

@@ -1,10 +1,14 @@
 page-book-search {
   .book-record-group{
     padding:20px 0 0;
+    span.total-count{
+      display: block;
+      padding: 0 10px;
+    }
     a.book-record{
       color: #000;
       display: block;
-      padding: 10px;
+      padding: 14px 10px;
       border-bottom: solid 1px #d5d5d5;
       h2{
         font-size: 22px;
@@ -21,6 +25,15 @@ page-book-search {
     }
     a.book-record:active{
       color: #8b8b8b;
+    }
+  }
+  div.no-record{
+    width:100%;
+    text-align: center;
+    padding-top: 20vh;
+    color: #797979;
+    ion-icon{
+      font-size: 80px;
     }
   }
 }
