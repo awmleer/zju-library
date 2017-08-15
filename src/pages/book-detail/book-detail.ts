@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {LibraryService} from "../../services/library.service";
+import {BookDetail} from "../../classes/book";
 
 
 
@@ -12,6 +13,7 @@ import {LibraryService} from "../../services/library.service";
 export class BookDetailPage {
   id:string;
   base:string;
+  book:BookDetail;
 
   constructor(
     public navCtrl: NavController,
@@ -22,8 +24,9 @@ export class BookDetailPage {
   ionViewWillLoad(){
     this.id=this.navParams.get('id');
     this.base=this.navParams.get('base');
-    this.librarySvc.bookDetail(this.base,this.id).then(data=>{
-      console.log(data);
+    this.librarySvc.bookDetail(this.base,this.id).then(book=>{
+      console.log(book);
+      this.book=book;
     });
   }
 

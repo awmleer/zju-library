@@ -42,25 +42,17 @@ $colors: (
 );
 
 
-// App iOS Variables
-// --------------------------------------------------
-// iOS only Sass variables can go here
 
 
-
-
-// App Material Design Variables
-// --------------------------------------------------
-// Material Design only Sass variables can go here
-
-
-
-
-// App Windows Variables
-// --------------------------------------------------
-// Windows only Sass variables can go here
-
-
+$toolbar-background: #fff;
+$toolbar-border-color: #fff;
+$toolbar-ios-border-color: $toolbar-border-color;
+$tabs-tab-color-active: #000;
+$tabs-md-tab-color-inactive: #969696;
+$tabs-ios-border-color: rgba(0,0,0,0.1);
+$tabs-ios-tab-min-height: 56px;
+$tabs-md-tab-min-height: 4.8rem;
+$tabs-md-tab-icon-size: 3.2rem;
 
 
 // App Theme

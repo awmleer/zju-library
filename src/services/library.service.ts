@@ -34,7 +34,7 @@ export class LibraryService {
     });
   }
 
-  bookDetail(base,id){
+  bookDetail(base,id):Promise<BookDetail>{
     return this.http.get(CONFIG.libraryUrl+'/X',{
       params:{
         'op':'find-doc',
