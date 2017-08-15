@@ -20,6 +20,7 @@ page-book-detail {
   .back-button{
     color: #ffffff;
   }
+
   .book-title{
     position: absolute;
     display: flex;
@@ -28,7 +29,7 @@ page-book-detail {
     top:0;
     left:0;
     z-index:10;
-    height: 140px;
+    height: 136px;
     width:100%;
     color: #ffffff;
     div.content{
@@ -39,15 +40,22 @@ page-book-detail {
       width:100%;
       font-size:30px;
       line-height: 32px;
-      //vertical-align: bottom;
+      margin-bottom: 14px;
     }
     span{
       display: inline-block;
-      margin-top: -10px;
       width:100%;
       font-size: 14px;
     }
   }
+
+  button.button-collect{
+    position: absolute;
+    top:102px;
+    right: 20px;
+    z-index:100;
+  }
+
   ion-card.card-book-detail{
     position: relative;
     z-index: 100;
@@ -56,6 +64,7 @@ page-book-detail {
     margin: 25px 30px;
     width: calc(100% - 60px);
   }
+
   .item-group{
     padding:0 30px;
     $border: solid 1px #d6d6d6;

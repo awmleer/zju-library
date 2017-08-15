@@ -15,6 +15,8 @@ import {HttpModule} from "@angular/http";
 import {BookDetailPageModule} from "../pages/book-detail/book-detail.module";
 import {ComponentsModule} from "../components/components.module";
 import {BookSearchPageModule} from "../pages/book-search/book-search.module";
+import {IonicStorageModule} from "@ionic/storage";
+import {CollectionService} from "../services/collection.service";
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import {BookSearchPageModule} from "../pages/book-search/book-search.module";
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     BookDetailPageModule,
     BookSearchPageModule,
     ComponentsModule
@@ -44,6 +47,7 @@ import {BookSearchPageModule} from "../pages/book-search/book-search.module";
     StatusBar,
     SplashScreen,
     LibraryService,
+    CollectionService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

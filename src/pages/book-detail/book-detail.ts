@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IonicPage, Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {LibraryService} from "../../services/library.service";
 import {BookDetail, BookItem} from "../../classes/book";
+import {CollectionService} from "../../services/collection.service";
 
 
 
@@ -16,11 +17,13 @@ export class BookDetailPage {
   book:BookDetail;
   items:BookItem[];
   loading:Loading;
+  isCollected:boolean=false;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private librarySvc: LibraryService,
+    private collectionSvc: CollectionService,
     private loadingCtrl: LoadingController
   ) {}
 
@@ -41,6 +44,7 @@ export class BookDetailPage {
     this.librarySvc.bookDetail(this.base,this.id).then(book=>{
       console.log(book);
       this.book=book;
+      this.isCollected=this.collectionSvc.isCollected(this.book.id);
       this.librarySvc.bookItems(this.base,this.id).then(items=>{
         console.log(items);
         this.items=items;
@@ -57,6 +61,25 @@ export class BookDetailPage {
       }
     }
     return count;
+  }
+
+  toggleCollect(){
+    if (this.isCollected) {
+      this.collectionSvc.unCollect(this.book.id).then(()=>{
+        this.isCollected=false;
+      });
+    }else{
+      this.collectionSvc.collect({
+        bookId:this.book.id,
+        title:this.book.title,
+        author:this.book.author,
+        callNumber:this.items.length>0?this.items[0].callNumber:'',
+        press:this.book.press.name,
+        year:this.book.year
+      }).then(()=>{
+        this.isCollected=true;
+      });
+    }
   }
 
 }

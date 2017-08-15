@@ -1,4 +1,3 @@
 export const CONFIG={
-  // libraryUrl:'/zju',
-  libraryUrl:'http://webpac.zju.edu.cn'
+  libraryUrl:window['cordova']?'http://webpac.zju.edu.cn':'/zju'
 };

@@ -9,6 +9,7 @@
 
 <ion-content>
   <div class="color-div"></div>
+
   <div *ngIf="book" class="book-title">
     <div class="content">
       <h1>
@@ -17,6 +18,11 @@
       <span>{{book.author}}&nbsp;&nbsp;&nbsp;{{book.classNumber}}</span>
     </div>
   </div>
+
+  <button class="button-collect" ion-button clear icon-only color="white" (click)="toggleCollect()">
+    <ion-icon [name]="isCollected?'md-heart':'md-heart-outline'"></ion-icon>
+  </button>
+
   <ion-card *ngIf="book" class="card-book-detail">
     <ion-card-content>
       系统图书编号 {{book.id}}<br>
