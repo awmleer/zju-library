@@ -17,6 +17,7 @@ import {ComponentsModule} from "../components/components.module";
 import {BookSearchPageModule} from "../pages/book-search/book-search.module";
 import {IonicStorageModule} from "@ionic/storage";
 import {CollectionService} from "../services/collection.service";
+import {ToastService} from "../services/toast.service";
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {CollectionService} from "../services/collection.service";
     SplashScreen,
     LibraryService,
     CollectionService,
+    ToastService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

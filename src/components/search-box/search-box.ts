@@ -16,6 +16,7 @@ export class SearchBoxComponent {
 
   actionButtonClicked(){
     // this.focusing=true;//prevent button sliding to right
+    this.textChange.emit(this.text);
     this.doSearch.emit();
   }
 

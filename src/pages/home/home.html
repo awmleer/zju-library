@@ -5,6 +5,14 @@
 </ion-header>
 
 <ion-content padding>
+
+  <ion-refresher pullMax="300" pullMin="70" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      refreshingSpinner="dots"
+      pullingIcon="ios-arrow-down">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <search-box [(text)]="searchText" (doSearch)="search()"></search-box>
 
   <div class="latest-book-group">
