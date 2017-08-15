@@ -22,7 +22,9 @@ export class BookDetailPage {
   ionViewWillLoad(){
     this.id=this.navParams.get('id');
     this.base=this.navParams.get('base');
-    this.librarySvc.bookDetail(this.base,this.id);
+    this.librarySvc.bookDetail(this.base,this.id).then(data=>{
+      console.log(data);
+    });
   }
 
   ionViewDidLoad() {
