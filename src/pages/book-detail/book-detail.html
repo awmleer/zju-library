@@ -1,6 +1,5 @@
 <ion-header>
 
-  <div class="color-div"></div>
   <ion-navbar>
     <ion-title>图书详情</ion-title>
   </ion-navbar>
@@ -9,8 +8,28 @@
 
 
 <ion-content>
-  <div *ngIf="book">
-    {{book.name}}
-
+  <div class="color-div"></div>
+  <div *ngIf="book" class="book-title">
+    <div class="content">
+      <h1>
+        {{book.title}}<br>
+      </h1>
+      <span>{{book.author}}&nbsp;&nbsp;&nbsp;{{book.classNumber}}</span>
+    </div>
   </div>
+  <ion-card *ngIf="book" class="card-book-detail">
+    <ion-card-content>
+      系统图书编号 {{book.id}}<br>
+      ISBN {{book.ISBN?book.ISBN:'暂无'}}<br>
+      作者 {{book.author}}<br>
+      编者 {{book.editor}}<br>
+      分类号 {{book.classNumber}}<br>
+      出版社 {{book.press.name}}({{book.press.location}})<br>
+      页数 {{book.pageCount}}<br>
+      价格 {{book.price}}<br>
+      出版年份 {{book.year}}<br>
+      出版年份 {{book.year}}<br>
+      装订类型 {{book.bindingType}}<br>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

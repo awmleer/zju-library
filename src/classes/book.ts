@@ -11,7 +11,7 @@ export class BookDetail {
   // callNumber:string;
   price:string;
   bindingType:string;
-  name:string;
+  title:string;
   author:string;
   editor:string;
   press:{

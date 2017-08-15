@@ -64,7 +64,7 @@ export class LibraryService {
           let nodeValue=subField.childNodes[0].nodeValue;
           if (id=='200'){
             if (label == 'a') {
-              book.name=nodeValue;
+              book.title=nodeValue;
             }else if (label == 'f') {
               book.author=nodeValue;
             }else if (label == 'g') {
