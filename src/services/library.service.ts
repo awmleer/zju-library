@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {CONFIG} from "../app/config";
+import {CONST} from "../app/const";
 import {BookDetail, BookItem, BookRecord, LatestBook} from "../classes/book";
 
 
@@ -13,7 +13,7 @@ export class LibraryService {
 
   latestBooks():Promise<LatestBook[]>{
     return this.http.get(
-      CONFIG.libraryUrl+'/cgi-bin/newbook.cgi?base=ALL&cls=ALL&date=180'
+      CONST.libraryUrl+'/cgi-bin/newbook.cgi?base=ALL&cls=ALL&date=180'
     ).toPromise().then((response:Response)=>{
       console.log(response.text());
       let books:LatestBook[]=[];
@@ -35,7 +35,7 @@ export class LibraryService {
   }
 
   bookDetail(base,id):Promise<BookDetail>{
-    return this.http.get(CONFIG.libraryUrl+'/X',{
+    return this.http.get(CONST.libraryUrl+'/X',{
       params:{
         'op':'find-doc',
         'doc_num':id,
@@ -101,7 +101,7 @@ export class LibraryService {
 
 
   bookItems(base,id):Promise<BookItem[]>{
-    return this.http.get(CONFIG.libraryUrl+'/X',{
+    return this.http.get(CONST.libraryUrl+'/X',{
       params:{
         'op':'item-data',
         'doc_num':id,
@@ -154,7 +154,7 @@ export class LibraryService {
 
 
   search(text:string):Promise<{setId:string;totalCount:number;}>{
-    return this.http.get(CONFIG.libraryUrl+'/X',{
+    return this.http.get(CONST.libraryUrl+'/X',{
       params:{
         'op':'find',
         'code':'wrd',
@@ -179,7 +179,7 @@ export class LibraryService {
   }
 
   present(start:number,length:number,setId:string):Promise<BookRecord[]>{
-    return this.http.get(CONFIG.libraryUrl+'/X',{
+    return this.http.get(CONST.libraryUrl+'/X',{
       params:{
         'op':'present',
         'set_entry':`${start}-${start+length-1}`,
