@@ -20,7 +20,7 @@ export class BookSearchPage {
   bulkLength:number=10;
   bookRecords:BookRecord[]=[];
   recordStartNumber:number;
-  hasError:boolean=null;//hasError==null means first time load page
+  hasError:boolean;
 
   constructor(
     private navCtrl: NavController,
@@ -55,6 +55,7 @@ export class BookSearchPage {
 
   search(){
     this.showLoading();
+    this.hasError=null;
     this.totalCount=-1;
     this.bookRecords=[];
     this.recordStartNumber=1;
