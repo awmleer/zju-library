@@ -19,6 +19,7 @@ import {IonicStorageModule} from "@ionic/storage";
 import {CollectionService} from "../services/collection.service";
 import {ToastService} from "../services/toast.service";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
+import {UpdateService} from "../services/update.service";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
     SplashScreen,
     LibraryService,
     CollectionService,
+    UpdateService,
     ToastService,
     InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

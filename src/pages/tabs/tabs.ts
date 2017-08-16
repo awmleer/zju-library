@@ -13,7 +13,9 @@ export class TabsPage {
   tab2Root = CollectionPage;
   tab3Root = AboutPage;
 
-  constructor() {
+  constructor(
+
+  ) {
 
   }
 }
