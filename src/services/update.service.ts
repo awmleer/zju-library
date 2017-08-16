@@ -17,7 +17,6 @@ export class UpdateService {
   checkUpdate():Promise<boolean>{
     return this.http.get(CONST.ossUrl+'/version.json').toPromise().then((response:Response)=>{
       this.latestVersion=response.json();
-      console.log(this.latestVersion);
       this.hasNewVersion=(
         (this.latestVersion.major > CONST.version.major)||
         (this.latestVersion.major==CONST.version.major&&this.latestVersion.minor>CONST.version.minor)||
@@ -25,6 +24,10 @@ export class UpdateService {
       );
       return this.hasNewVersion;
     });
+  }
+
+  get androidDownloadLink(){
+    return `http://qiniu.zjulibrary.sparker.top/apk/zjuLibrary${this.latestVersion.major}.${this.latestVersion.minor}.${this.latestVersion.patch}.apk`;
   }
 
 
