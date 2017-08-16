@@ -13,6 +13,7 @@ export class UpdateService {
     private http: Http
   ) {}
 
+
   checkUpdate():Promise<boolean>{
     return this.http.get(CONST.ossUrl+'/version.json').toPromise().then((response:Response)=>{
       this.latestVersion=response.json();

@@ -4,7 +4,6 @@ import {LibraryService} from "../../services/library.service";
 import {BookDetailPage} from "../book-detail/book-detail";
 import {LatestBook} from "../../classes/book";
 import {BookSearchPage} from "../book-search/book-search";
-import {$FF} from "@angular/compiler/src/chars";
 import {ToastService} from "../../services/toast.service";
 
 @Component({
@@ -36,7 +35,7 @@ export class HomePage {
 
   freshLatestBooks():Promise<null>{
     return this.librarySvc.latestBooks().then(books=>{
-      console.log(books);
+      // console.log(books);
       this.latestBooks=books;
     }).catch(()=>{
         this.toastSvc.toast('获取最新图书失败');
@@ -52,7 +51,6 @@ export class HomePage {
   }
 
   search(){
-    console.log(this.searchText);
     this.navCtrl.push(BookSearchPage,{
       'searchText': this.searchText
     });

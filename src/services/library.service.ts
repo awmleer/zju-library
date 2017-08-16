@@ -15,7 +15,7 @@ export class LibraryService {
     return this.http.get(
       CONST.libraryUrl+'/cgi-bin/newbook.cgi?base=ALL&cls=ALL&date=180'
     ).toPromise().then((response:Response)=>{
-      console.log(response.text());
+      // console.log(response.text());
       let books:LatestBook[]=[];
       function newbook(obj){
         for (let key in obj) {
