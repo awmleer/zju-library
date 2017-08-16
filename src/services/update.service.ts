@@ -27,7 +27,7 @@ export class UpdateService {
   }
 
   get androidDownloadLink(){
-    return `http://qiniu.zjulibrary.sparker.top/apk/zjuLibrary${this.latestVersion.major}.${this.latestVersion.minor}.${this.latestVersion.patch}.apk`;
+    return `${CONST.ossUrl}/apk/zjuLibrary${this.latestVersion.major}.${this.latestVersion.minor}.${this.latestVersion.patch}.apk`;
   }
 
 
