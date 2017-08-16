@@ -3,6 +3,7 @@ import {IonicPage, Loading, LoadingController, NavController, NavParams} from 'i
 import {LibraryService} from "../../services/library.service";
 import {BookRecord} from "../../classes/book";
 import {BookDetailPage} from "../book-detail/book-detail";
+import {ToastService} from "../../services/toast.service";
 
 
 
@@ -19,12 +20,14 @@ export class BookSearchPage {
   bulkLength:number=10;
   bookRecords:BookRecord[]=[];
   recordStartNumber:number;
+  hasError:boolean=null;//hasError==null means first time load page
 
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
     private librarySvc: LibraryService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private toastSvc: ToastService
   ) {
     this.searchText=navParams.get('searchText');
   }
@@ -44,7 +47,9 @@ export class BookSearchPage {
   }
 
   dismissLoading(){
-    this.loading.dismiss();
+    if (this.loading) {
+      this.loading.dismiss();
+    }
     this.loading=null;
   }
 
@@ -57,8 +62,11 @@ export class BookSearchPage {
       this.setId=data.setId;
       this.totalCount=data.totalCount;
       this.loadRecords();
+    }).catch(()=>{
+      this.dismissLoading();
+      this.hasError=true;
+      this.toastSvc.toast('加载失败');
     });
-    //TODO catch
   }
 
   loadRecords(){
@@ -68,8 +76,14 @@ export class BookSearchPage {
       this.recordStartNumber+=this.bulkLength;
       console.log(bookRecords);
       this.dismissLoading();
+      this.hasError=false;
+    }).catch(()=>{
+      this.dismissLoading();
+      if (this.hasError == null) {
+        this.hasError=true;
+      }
+      this.toastSvc.toast('加载失败');
     });
-    //TODO catch
   }
 
   goBookDetail(bookRecord){

@@ -51,7 +51,7 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
     LibraryService,
     CollectionService,
     ToastService,
-    InAppBrowser,,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
