@@ -3,6 +3,7 @@
 
 *.keystore
 /apk/
+.qshell/
 
 *~
 *.sw[mnpcod]
