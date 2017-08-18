@@ -1,26 +1,48 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# 浙图
 
-## How to use this template
+检索和收藏浙江大学图书馆中的书目。
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+![homepage](screenShots/homepage.png)
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+👽欢迎提交PR和issue！
 
-### With the Ionic CLI:
+## 架构说明
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+这是一个基于ionic的hybrid app，无后端设计，所有的请求均为app直接请求浙大图书馆的API。
+
+### 依赖
+
+- ionic v3+
+- cordova-plugin-inappbrowser
+- cordova-sqlite-storage
+- 其他详见`package.json`&`config.xml`
+
+## 命令&脚本说明
+
+### 环境配置
 
 ```bash
 $ sudo npm install -g ionic cordova
-$ ionic start myTabs tabs
+$ npm install
+$ ionic cordova plugin add xxx(具体的插件列表请看依赖)
 ```
 
-Then, to run it, cd into `myTabs` and run:
+### 开始开发
 
 ```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
+$ ionic serve
 ```
 
-Substitute ios for android if not on a Mac.
+### 打包app
 
+```bash
+# Android
+$ ionic cordova build android --release --prod
+$ ./signApk.sh
+# iOS
+$ ionic cordova build ios --prod
+```
+
+注：
+
+由于*浙大图书馆*为商标，无法上架App Store，所以只能取名为*浙图*。
