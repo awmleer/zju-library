@@ -34,8 +34,15 @@
   </div>
 
   <div style="text-align: center" *ngIf="totalCount && !hasError">
-    <button *ngIf="recordStartNumber<=totalCount" ion-button clear small color="dark" (click)="loadRecords()">加载更多</button>
-    <span *ngIf="recordStartNumber>totalCount">已全部加载完毕</span>
+    <!--<button *ngIf="!allRecordsLoaded && showManualLoad" ion-button clear small color="dark" (click)="loadRecords()">加载更多</button>-->
+    <span *ngIf="allRecordsLoaded">已全部加载完毕</span>
   </div>
+
+  <ion-infinite-scroll *ngIf="totalCount && !hasError && !allRecordsLoaded" (ionInfinite)="$event.waitFor(loadRecords())">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots"
+      loadingText="加载中">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

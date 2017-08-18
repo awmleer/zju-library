@@ -21,6 +21,7 @@ export class BookSearchPage {
   bookRecords:BookRecord[]=[];
   recordStartNumber:number;
   hasError:boolean;
+  // showManualLoad: boolean=false;
 
   constructor(
     private navCtrl: NavController,
@@ -70,9 +71,9 @@ export class BookSearchPage {
     });
   }
 
-  loadRecords(){
-    this.showLoading();
-    this.librarySvc.present(this.recordStartNumber,this.bulkLength,this.setId).then(bookRecords=>{
+  loadRecords():Promise<null>{
+    // this.showLoading();
+    return this.librarySvc.present(this.recordStartNumber,this.bulkLength,this.setId).then(bookRecords=>{
       Array.prototype.push.apply(this.bookRecords,bookRecords);
       this.recordStartNumber+=this.bulkLength;
       console.log(bookRecords);
@@ -85,6 +86,10 @@ export class BookSearchPage {
       }
       this.toastSvc.toast('加载失败');
     });
+  }
+
+  get allRecordsLoaded():boolean{
+    return this.recordStartNumber>this.totalCount
   }
 
   goBookDetail(bookRecord){
