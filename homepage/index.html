@@ -13,13 +13,19 @@
 
   <!--<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">-->
   <!--<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
-  <link href="//cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap-grid.min.css" rel="stylesheet">
+  <!--<link href="//cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap-grid.min.css" rel="stylesheet">-->
+  <link href="//cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
   <!--<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+  <link href="//cdn.bootcss.com/Buttons/2.0.0/css/buttons.min.css" rel="stylesheet">
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 <style>
   div.container{
     font-family: "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "Hiragi    no Sans GB", "Source Han Sans CN Normal", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Z    en Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif !important;
+    font-weight: 300;
   }
   .footer{
     text-align: center;
@@ -38,23 +44,36 @@
       <h1 style="font-weight: 100;font-size: 6rem;margin-bottom: 0">
         浙图
       </h1>
-      <p style="margin-top: 0;font-weight: 300;font-size: 1.4rem;">
+      <p style="margin-top: 0;font-weight: 300;font-size: 1.4rem;margin-bottom: 1rem">
         检索和收藏浙江大学图书馆中的书目
       </p>
+      <div>
+        <a class="button button-borderless" href="https://github.com/awmleer/zjuLibrary" target="_blank" style="font-size: 1.4rem">
+          <i class="fa fa-github"></i> GitHub · awmleer/zjuLibrary
+        </a>
+      </div>
+      <div style="margin-top: 1.5rem">
+        <a href="http://unicorn-ui.com/" target="_blank" class="button button-glow button-rounded button-royal" style="margin-right: 1rem">
+          <i class="fa fa-android"></i> 安卓版
+        </a>
+        <a href="http://unicorn-ui.com/" target="_blank" class="button button-glow button-rounded button-royal">
+          <i class="fa fa-apple"></i> iOS版
+        </a>
+      </div>
     </div>
-    <div class="col visible-lg-block visible-xl-block" style="min-height: 85vh">
-      <img src="assets/image/screenshot1.png" class="screenshot" style="position: absolute;top:15vh;z-index: 100;left: 30vh;">
-      <img src="assets/image/screenshot2.png" class="screenshot" style="position: absolute;top:6vh;z-index: 99;">
+    <div class="col d-none d-lg-block" style="min-height: 85vh">
+      <img src="assets/image/screenshot1.png" class="screenshot" style="position: absolute;top:15vh;z-index: 100;left: 27vh;">
+      <img src="assets/image/screenshot2.png" class="screenshot" style="position: absolute;top:6vh;z-index: 99;left:-5vh">
     </div>
   </div>
-  <div class="row visible-sm-block visible-md-block">
-    <div class="col-xs-12">
+  <div class="row">
+    <div class="col d-lg-none">
       23
     </div>
   </div>
 
   <div class="row">
-    <div class="col-sm-12 footer">
+    <div class="col-sm-12 footer" style="padding-top: 2rem">
       <div>浙图&copy;2017awmleer</div>
       <span style="position: fixed;bottom:-20px;left: -100px">
         <script src="https://s22.cnzz.com/z_stat.php?id=1263607085&web_id=1263607085" language="JavaScript"></script>
