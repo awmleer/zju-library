@@ -18,7 +18,7 @@
 
   <div class="color-div"></div>
 
-  <div *ngIf="book" class="book-title">
+  <div *ngIf="bookLoaded" class="book-title">
     <div class="content">
       <h1>
         {{book.title}}<br>
@@ -31,7 +31,7 @@
     <ion-icon [name]="isCollected?'md-heart':'md-heart-outline'"></ion-icon>
   </button>
 
-  <ion-card *ngIf="book" class="card-book-detail">
+  <ion-card *ngIf="bookLoaded" class="card-book-detail">
     <ion-card-content>
       系统图书编号 {{book.id}}<br>
       ISBN {{book.ISBN?book.ISBN:'暂无'}}<br>
@@ -45,7 +45,7 @@
       装订类型 {{book.bindingType}}<br>
     </ion-card-content>
   </ion-card>
-  <div *ngIf="book && items" class="item-group">
+  <div *ngIf="bookLoaded && items" class="item-group">
     <span>共{{items.length}}单册/{{borrowedItemsCount}}在借</span>
     <div *ngFor="let item of items" class="item">
       <ion-badge *ngIf="item.requested" color="gray">被预约</ion-badge>

@@ -18,7 +18,6 @@ export class BookDetailPage {
   book:BookDetail;
   items:BookItem[];
   loading:Loading;
-  isCollected:boolean=false;
 
   constructor(
     public navCtrl: NavController,
@@ -28,6 +27,19 @@ export class BookDetailPage {
     private loadingCtrl: LoadingController,
     private toastSvc: ToastService
   ) {}
+
+
+  get bookLoaded(){
+    return (this.book && this.book.id);
+  }
+
+  get isCollected():boolean{
+    if (this.bookLoaded) {
+      return this.collectionSvc.isCollected(this.book.id);
+    }else{
+      return false;
+    }
+  }
 
   ionViewWillLoad(){
     this.loading=this.loadingCtrl.create({
@@ -66,7 +78,6 @@ export class BookDetailPage {
       this.librarySvc.bookDetail(this.base,this.id).then(book=>{
         // console.log(book);
         this.book=book;
-        this.isCollected=this.collectionSvc.isCollected(this.book.id);
         this.librarySvc.bookItems(this.base,this.id).then(items=>{
           // console.log(items);
           this.items=items;
@@ -93,9 +104,7 @@ export class BookDetailPage {
 
   toggleCollect(){
     if (this.isCollected) {
-      this.collectionSvc.unCollect(this.book.id).then(()=>{
-        this.isCollected=false;
-      });
+      this.collectionSvc.unCollect(this.book.id);
     }else{
       this.collectionSvc.collect({
         bookId:this.book.id,
@@ -104,8 +113,6 @@ export class BookDetailPage {
         callNumber:this.items.length>0?this.items[0].callNumber:'',
         press:this.book.press.name,
         year:this.book.year
-      }).then(()=>{
-        this.isCollected=true;
       });
     }
   }
