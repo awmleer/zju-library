@@ -1,0 +1,9 @@
+
+{
+  "src_dir" : "homepage",
+  "bucket" : "zjulibrary",
+  "overwrite": true,
+  "key_prefix": "",
+  "fileType": 0,
+  "rescan_local": true
+}
