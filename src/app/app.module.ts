@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
 import { CollectionPage } from '../pages/collection/collection';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -20,12 +19,15 @@ import {CollectionService} from "../services/collection.service";
 import {ToastService} from "../services/toast.service";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {UpdateService} from "../services/update.service";
+import {AccountService} from "../services/account.service";
+import {AboutPageModule} from "../pages/about/about.module";
+import {MePage} from "../pages/me/me";
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     CollectionPage,
+    MePage,
     HomePage,
     TabsPage
   ],
@@ -36,12 +38,13 @@ import {UpdateService} from "../services/update.service";
     IonicStorageModule.forRoot(),
     BookDetailPageModule,
     BookSearchPageModule,
+    AboutPageModule,
     ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    MePage,
     CollectionPage,
     HomePage,
     TabsPage
@@ -52,6 +55,7 @@ import {UpdateService} from "../services/update.service";
     LibraryService,
     CollectionService,
     UpdateService,
+    AccountService,
     ToastService,
     InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import {AlertController, NavController, Platform} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, Platform} from 'ionic-angular';
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {CONST} from "../../app/const";
 import {UpdateService} from "../../services/update.service";
 
+@IonicPage()
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
