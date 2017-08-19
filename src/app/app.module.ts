@@ -22,6 +22,7 @@ import {UpdateService} from "../services/update.service";
 import {AccountService} from "../services/account.service";
 import {AboutPageModule} from "../pages/about/about.module";
 import {MePage} from "../pages/me/me";
+import {LoginPageModule} from "../pages/login/login.module";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {MePage} from "../pages/me/me";
     BookDetailPageModule,
     BookSearchPageModule,
     AboutPageModule,
+    LoginPageModule,
     ComponentsModule
   ],
   bootstrap: [IonicApp],

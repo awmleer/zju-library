@@ -29,6 +29,7 @@ export class LibraryService {
         }
       }
       function nav(){}
+      eval(response.text());
       return books;
     });
   }
