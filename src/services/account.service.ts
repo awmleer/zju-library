@@ -13,8 +13,8 @@ export class AccountService {
 
   getToken():Promise<string>{
     return this.http.get(CONST.libraryUrl+'/F?RN='+Math.round(Math.random()*1000000000)).toPromise().then((response:Response)=>{
-      let t=response.text().match(/="http:\/\/webpac\.zju\.edu\.cn:80\/F\/.+" /g);
-      return t[0].replace('="http://webpac.zju.edu.cn:80/F/','').replace('" ','');
+      let t=response.text().match(/="http:\/\/webpac\.zju\.edu\.cn:80\/F\/([A-Z]|-|\d)+/g);
+      return t[0].replace('="http://webpac.zju.edu.cn:80/F/','');
     });
   }
 

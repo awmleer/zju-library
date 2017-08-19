@@ -29,7 +29,6 @@ export class LibraryService {
         }
       }
       function nav(){}
-      console.log(eval(response.text()));
       return books;
     });
   }
