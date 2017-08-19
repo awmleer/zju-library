@@ -6,6 +6,7 @@ import {LoginPage} from "../login/login";
 import {ToastService} from "../../services/toast.service";
 import {UpdateService} from "../../services/update.service";
 import {BorrowHistoryPage} from "../borrow-history/borrow-history";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 
 @Component({
@@ -18,7 +19,8 @@ export class MePage {
     public navCtrl: NavController,
     private toastSvc: ToastService,
     private updateSvc: UpdateService,
-    private accountSvc: AccountService
+    private accountSvc: AccountService,
+    private socialSharing: SocialSharing
   ) {}
 
   get hasNewVersion():boolean{
@@ -29,6 +31,14 @@ export class MePage {
     return this.accountSvc.user;
   }
 
+
+  shareApp(){
+    this.socialSharing.shareWithOptions({
+      message: '检索和收藏浙江大学图书馆中的书目',
+      subject: `浙大图书馆`,
+      url: 'http://home.zjulibrary.sparker.top/'
+    });
+  }
 
   logout(){
     this.accountSvc.logout();

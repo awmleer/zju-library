@@ -15,6 +15,10 @@ page-me {
     button{
       ion-icon{
         margin-right: 10px!important;
+        padding:0 10px!important;
+      }
+      ion-icon::before{
+        width:2rem;
       }
       .item-inner{
         margin-left: 0!important;

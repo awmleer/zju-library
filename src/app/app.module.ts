@@ -25,6 +25,7 @@ import {MePage} from "../pages/me/me";
 import {LoginPageModule} from "../pages/login/login.module";
 import {BorrowHistoryPageModule} from "../pages/borrow-history/borrow-history.module";
 import {CookieModule} from "ngx-cookie";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import {CookieModule} from "ngx-cookie";
     AccountService,
     ToastService,
     InAppBrowser,
+    SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
