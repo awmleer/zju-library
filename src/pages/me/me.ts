@@ -4,6 +4,7 @@ import {AccountService} from "../../services/account.service";
 import {AboutPage} from "../about/about";
 import {LoginPage} from "../login/login";
 import {ToastService} from "../../services/toast.service";
+import {UpdateService} from "../../services/update.service";
 
 
 @Component({
@@ -15,8 +16,13 @@ export class MePage {
   constructor(
     public navCtrl: NavController,
     private toastSvc: ToastService,
+    private updateSvc: UpdateService,
     private accountSvc: AccountService
   ) {}
+
+  get hasNewVersion():boolean{
+    return this.updateSvc.hasNewVersion;
+  }
 
   get user(){
     return this.accountSvc.user;

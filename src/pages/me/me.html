@@ -36,7 +36,9 @@
       退出登录
     </button>
     <button ion-item (click)="goAboutPage()">
-      <ion-icon name="ios-information-circle-outline" item-start></ion-icon>关于
+      <ion-icon name="ios-information-circle-outline" item-start></ion-icon>
+      关于
+      <ion-badge color="danger" *ngIf="hasNewVersion">New</ion-badge>
     </button>
   </ion-list>
 </ion-content>
