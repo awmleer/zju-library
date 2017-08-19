@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import {IonicPage, LoadingController, NavController} from 'ionic-angular';
+import {AccountService} from "../../services/account.service";
+import {ToastService} from "../../services/toast.service";
 
 
 
@@ -10,12 +12,30 @@ import { IonicPage, NavController } from 'ionic-angular';
 })
 export class LoginPage {
 
+  username:string;
+  password:string;
+
   constructor(
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private accountSvc: AccountService,
+    private toastSvc: ToastService,
+    private loadingCtrl: LoadingController
   ) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  login(){
+    let loading=this.loadingCtrl.create({
+      spinner: 'dots',
+      content: '登录中'
+    });
+    this.accountSvc.login(this.username,this.password).then(()=>{
+      this.navCtrl.pop().then(()=>{
+        this.toastSvc.toast('登录成功');
+      });
+    }).catch(()=>{
+      loading.dismiss().then(()=>{
+        this.toastSvc.toast('登录失败');
+      });
+    });
   }
 
 }

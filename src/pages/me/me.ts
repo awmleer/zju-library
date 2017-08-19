@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {AccountService} from "../../services/account.service";
 import {AboutPage} from "../about/about";
+import {LoginPage} from "../login/login";
 
 
 @Component({
@@ -20,8 +21,11 @@ export class MePage {
   }
 
   ionViewDidLoad() {
-    this.accountSvc.login();
     console.log('ionViewDidLoad MePage');
+  }
+
+  goLoginPage(){
+    this.navCtrl.push(LoginPage);
   }
 
   goAboutPage(){

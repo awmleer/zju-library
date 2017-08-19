@@ -7,20 +7,32 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
   <ion-list>
 
     <ion-item>
       <ion-label fixed>学号</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" value="" [(ngModel)]="username"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>密码</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 
   </ion-list>
+
+
+
+  <div style="padding: 0 10px;margin-top: -20px">
+    <p style="font-size: 1.3rem;color: #848484;margin: 0 0 30px;">
+      您的学号和密码会在<b>加密</b>后存储在<b>本地</b>
+    </p>
+    <button ion-button block color="dark" (click)="login()">
+      登录
+    </button>
+  </div>
+
 
 </ion-content>
