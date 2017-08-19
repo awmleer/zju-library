@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Headers, Response,URLSearchParams} from '@angular/http';
+import {Http, Headers, Response, URLSearchParams, RequestOptionsArgs} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {CONST} from "../app/const";
 import {User} from "../classes/user";
@@ -13,6 +13,7 @@ export class AccountService {
   private username:string;
   private password:string;
   user:User;
+  private alephSessionId:string;
 
   constructor(
     private http: Http,
@@ -63,6 +64,7 @@ export class AccountService {
         if (response.text().search('校园卡统一身份认证登录')==-1) {
           let alephSessionId=response.text().match(/ALEPH_SESSION_ID ?= ?([A-Z]|\d)+/)[0].replace(/ALEPH_SESSION_ID ?= ?/,'');
           this.cookieSvc.put('ALEPH_SESSION_ID',alephSessionId);
+          this.alephSessionId=alephSessionId;
           this.username=username;
           this.password=password;
           this.saveAccount();
@@ -108,7 +110,14 @@ export class AccountService {
 
 
   getHistoryBorrows():Promise<HistoryBorrow[]>{
-    return this.http.get(CONST.libraryUrl+'/F?func=bor-history-loan&adm_library=ZJU50').toPromise().then((response:Response)=>{
+    let options:RequestOptionsArgs={};
+    if (window.location.hostname == '') {
+      options={
+        headers:new Headers({'Cookie': 'ALEPH_SESSION_ID='+this.alephSessionId}),
+        withCredentials: true
+      };
+    }
+    return this.http.get(CONST.libraryUrl+'/F?func=bor-history-loan&adm_library=ZJU50',options).toPromise().then((response:Response)=>{
       let html=(new DOMParser()).parseFromString(response.text(),'text/html');
       let table=html.getElementsByTagName('table')[2];
       let borrows:HistoryBorrow[]=[];

@@ -34,7 +34,7 @@ export class MePage {
 
   shareApp(){
     this.socialSharing.shareWithOptions({
-      message: '检索和收藏浙江大学图书馆中的书目',
+      message: '浙图：可能是最好用的浙大图书馆第三方app',
       subject: `浙大图书馆`,
       url: 'http://home.zjulibrary.sparker.top/'
     });
