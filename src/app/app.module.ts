@@ -23,7 +23,6 @@ import {AccountService} from "../services/account.service";
 import {AboutPageModule} from "../pages/about/about.module";
 import {MePage} from "../pages/me/me";
 import {LoginPageModule} from "../pages/login/login.module";
-import {SecureStorage} from "@ionic-native/secure-storage";
 
 @NgModule({
   declarations: [
@@ -61,7 +60,6 @@ import {SecureStorage} from "@ionic-native/secure-storage";
     AccountService,
     ToastService,
     InAppBrowser,
-    SecureStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
