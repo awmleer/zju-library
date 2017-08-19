@@ -82,6 +82,7 @@ export class AccountService {
     this.username=null;
     this.password=null;
     this.saveAccount();
+    this.cookieSvc.remove('ALEPH_SESSION_ID');
   }
 
   freshUserInfo():Promise<null>{
