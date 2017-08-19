@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {AlertController, NavController} from 'ionic-angular';
 import {CollectionService} from "../../services/collection.service";
 import {BookCollection} from "../../classes/collection";
 import {BookDetailPage} from "../book-detail/book-detail";
@@ -12,6 +12,7 @@ export class CollectionPage {
 
   constructor(
     private navCtrl: NavController,
+    private alertCtrl: AlertController,
     private collectionSvc: CollectionService
   ) {}
 
@@ -23,6 +24,24 @@ export class CollectionPage {
     this.navCtrl.push(BookDetailPage,{
       'id':bookCollection.bookId
     });
+  }
+
+  deleteAllCollections(){
+    this.alertCtrl.create({
+      title: '删除',
+      message: '确定要删除所有的收藏记录吗？',
+      buttons: [
+        {
+          text: '取消'
+        },
+        {
+          text: '是的，删除',
+          handler: () => {
+            this.collectionSvc.deleteAllCollections();
+          }
+        }
+      ]
+    }).present();
   }
 
 }

@@ -3,6 +3,11 @@
     <ion-title>
       收藏
     </ion-title>
+    <ion-buttons end>
+      <button *ngIf="bookCollections.length>0" ion-button icon-only (click)="deleteAllCollections()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

@@ -53,4 +53,9 @@ export class CollectionService {
     return this.saveCollections();
   }
 
+  deleteAllCollections():Promise<null>{
+    this.collections=[];
+    return this.saveCollections();
+  }
+
 }
