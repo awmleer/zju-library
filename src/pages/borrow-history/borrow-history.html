@@ -1,12 +1,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>borrowHistory</ion-title>
+    <ion-title>借阅历史</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <div class="borrow-record-group">
+    <span *ngIf="borrows.length>0" class="total-count">共{{borrows.length}}条结果</span>
+    <div class="borrow-record" *ngFor="let borrow of borrows">
+      <h2>
+        {{borrow.bookName}}
+      </h2>
+      <span>
+        {{borrow.author}} {{borrow.subLibrary}}<br>
+        归还于{{borrow.returnDate}}
+      </span>
+    </div>
+  </div>
 
+  <div *ngIf="borrows.length==0" class="no-borrow">
+    <ion-icon name="ios-list-box-outline"></ion-icon><br>
+    没有借阅历史
+  </div>
 </ion-content>

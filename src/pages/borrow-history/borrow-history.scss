@@ -1,3 +1,36 @@
 page-borrow-history {
-
+  .borrow-record-group{
+    padding:20px 0 0;
+    span.total-count{
+      display: block;
+      padding: 0 10px;
+    }
+    div.borrow-record{
+      color: #000;
+      display: block;
+      padding: 14px 10px;
+      border-bottom: solid 1px #d5d5d5;
+      h2{
+        font-size: 22px;
+        font-weight: normal;
+        margin-bottom: 2px;
+      }
+      span{
+        color: #575757;
+        font-size: 14px;
+      }
+    }
+    div.borrow-record:last-of-type{
+      border-bottom: none;
+    }
+  }
+  div.no-borrow{
+    width:100%;
+    text-align: center;
+    padding-top: 20vh;
+    color: #797979;
+    ion-icon{
+      font-size: 80px;
+    }
+  }
 }

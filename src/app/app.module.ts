@@ -24,6 +24,7 @@ import {AboutPageModule} from "../pages/about/about.module";
 import {MePage} from "../pages/me/me";
 import {LoginPageModule} from "../pages/login/login.module";
 import {BorrowHistoryPageModule} from "../pages/borrow-history/borrow-history.module";
+import {CookieModule} from "ngx-cookie";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {BorrowHistoryPageModule} from "../pages/borrow-history/borrow-history.mo
     HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    CookieModule.forRoot(),
     BookDetailPageModule,
     BookSearchPageModule,
     AboutPageModule,

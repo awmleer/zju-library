@@ -4,6 +4,8 @@ import 'rxjs/add/operator/toPromise';
 import {CONST} from "../app/const";
 import {User} from "../classes/user";
 import {Storage} from "@ionic/storage";
+import {HistoryBorrow} from "../classes/borrow";
+import {CookieService} from "ngx-cookie";
 
 
 @Injectable()
@@ -15,6 +17,7 @@ export class AccountService {
 
   constructor(
     private http: Http,
+    private cookieSvc: CookieService,
     private storage: Storage
   ) {}
 
@@ -61,6 +64,7 @@ export class AccountService {
         if (response.text().search('校园卡统一身份认证登录')==-1) {
           this.alephSessionId=response.text().match(/ALEPH_SESSION_ID ?= ?([A-Z]|\d)+/)[0].replace(/ALEPH_SESSION_ID ?= ?/,'');
           console.log('alephSessionId',this.alephSessionId);
+          this.cookieSvc.put('ALEPH_SESSION_ID',this.alephSessionId);
           this.username=username;
           this.password=password;
           this.saveAccount();
@@ -100,6 +104,28 @@ export class AccountService {
         studentId:this.username,
         gender:xml.getElementsByTagName('z303-gender')[0].childNodes[0].nodeValue
       };
+    });
+  }
+
+
+  getHistoryBorrows():Promise<HistoryBorrow[]>{
+    return this.http.get(CONST.libraryUrl+'/F?func=bor-history-loan&adm_library=ZJU50').toPromise().then((response:Response)=>{
+      let xml=(new DOMParser()).parseFromString(response.text(),'text/html');
+      console.log(xml);
+      let table=xml.getElementsByTagName('table')[2];
+      console.log(table);
+      let borrows:HistoryBorrow[]=[];
+      let trs=table.getElementsByTagName('tr');
+      for (let i = 1; i < trs.length; i++) {
+        let tds=trs[i].getElementsByTagName('td');
+        borrows.push({
+          bookName:tds[2].innerText,
+          author:tds[1].innerText,
+          subLibrary:tds[9].innerText,
+          returnDate:tds[6].innerText
+        });
+      }
+      return borrows;
     });
   }
 
