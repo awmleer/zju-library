@@ -4,6 +4,12 @@ export class LatestBook {
   title:string;
 }
 
+export class HotBook {
+  id:string;
+  base:string;
+  title:string;
+}
+
 export class BookRecord {
   id:string;
   ISBN:string;

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {CONST} from "../app/const";
-import {BookDetail, BookItem, BookRecord, LatestBook} from "../classes/book";
+import {BookDetail, BookItem, BookRecord, HotBook, LatestBook} from "../classes/book";
 
 
 @Injectable()
@@ -33,6 +33,25 @@ export class LibraryService {
       return books;
     });
   }
+
+  hotBooks():Promise<HotBook[]>{
+    return this.http.get(CONST.libraryUrl+'/opac_lcl_chi/loan_top_ten/loan.ALL.ALL.y').toPromise().then((response:Response)=>{
+      let html=(new DOMParser()).parseFromString(response.text(),'text/html');
+      let books:HotBook[]=[];
+      let lis=html.getElementsByTagName('li');
+      for (let i = 0; i < lis.length; i++) {
+        let a=lis[i].getElementsByTagName('a')[0];
+        let url=a.getAttribute('url');
+        books.push({
+          id:url.match(/request=[^&]+/)[0].replace('request=',''),
+          base:url.match(/local_base=[^&]+/)[0].replace('local_base=',''),
+          title:a.innerText.replace(/ +/g,'')
+        })
+      }
+      return books;
+    });
+  }
+
 
   bookDetail(base,id):Promise<BookDetail>{
     return this.http.get(CONST.libraryUrl+'/X',{

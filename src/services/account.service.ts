@@ -109,8 +109,8 @@ export class AccountService {
 
   getHistoryBorrows():Promise<HistoryBorrow[]>{
     return this.http.get(CONST.libraryUrl+'/F?func=bor-history-loan&adm_library=ZJU50').toPromise().then((response:Response)=>{
-      let xml=(new DOMParser()).parseFromString(response.text(),'text/html');
-      let table=xml.getElementsByTagName('table')[2];
+      let html=(new DOMParser()).parseFromString(response.text(),'text/html');
+      let table=html.getElementsByTagName('table')[2];
       let borrows:HistoryBorrow[]=[];
       let trs=table.getElementsByTagName('tr');
       for (let i = 1; i < trs.length; i++) {

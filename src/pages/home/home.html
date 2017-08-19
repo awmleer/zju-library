@@ -24,12 +24,19 @@
         <ion-icon name="bulb"></ion-icon><span>最新</span>
       </ion-segment-button>
     </ion-segment>
+
     <div class="book-group" inset *ngIf="bookListType=='latest'">
       <div *ngFor="let book of latestBooks">
-        <a class="latest-book-link" (click)="goBookDetail(book)">{{book.title}}</a>
-        <br>
+        <a class="latest-book-link" (click)="goBookDetail(book.id,book.base)">{{book.title}}</a>
       </div>
     </div>
+
+    <div class="book-group" inset *ngIf="bookListType=='hot'">
+      <div *ngFor="let book of hotBooks">
+        <a class="latest-book-link" (click)="goBookDetail(book.id,book.base)">{{book.title}}</a>
+      </div>
+    </div>
+
 
 
   </div>
