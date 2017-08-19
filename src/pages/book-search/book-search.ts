@@ -76,7 +76,6 @@ export class BookSearchPage {
     return this.librarySvc.present(this.recordStartNumber,this.bulkLength,this.setId).then(bookRecords=>{
       Array.prototype.push.apply(this.bookRecords,bookRecords);
       this.recordStartNumber+=this.bulkLength;
-      console.log(bookRecords);
       this.dismissLoading();
       this.hasError=false;
     }).catch(()=>{

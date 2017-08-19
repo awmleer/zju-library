@@ -29,9 +29,6 @@ export class MePage {
     return this.accountSvc.user;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MePage');
-  }
 
   logout(){
     this.accountSvc.logout();

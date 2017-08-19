@@ -24,15 +24,17 @@ export class BorrowHistoryPage {
   ionViewDidLoad() {
     let loading=this.loadingCtrl.create({
       spinner: 'dots',
-      content: '登录中'
+      content: '加载中'
     });
     loading.present();
     this.accountSvc.getHistoryBorrows().then((borrows)=>{
       this.borrows=borrows;
       loading.dismiss();
     }).catch(()=>{
+      loading.dismiss().then(()=>{
         this.navCtrl.pop();
         this.toastSvc.toast('获取借阅历史失败');
+      });
     });
   }
 
