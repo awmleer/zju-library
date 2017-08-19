@@ -3,8 +3,18 @@ page-home {
     padding-top: 20px!important;
     padding-bottom: 50px!important;
   }
-  .latest-book-group{
-    padding-top: 35px;
+
+  ion-segment-button{
+    span{
+      display: inline-block;
+      font-size: 1.5rem;
+      position: relative;
+      bottom:0.3rem;
+    }
+  }
+
+  .book-group{
+    padding-top: 20px;
     text-align: center;
     span.header{
       display: block;

@@ -20,6 +20,7 @@ export class HomePage {
 
   latestBooks:LatestBook[]=[];
   searchText:string='';
+  bookListType:'hot'|'latest'='hot';
 
   ionViewDidLoad(){
     this.freshLatestBooks();

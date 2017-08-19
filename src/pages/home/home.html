@@ -15,12 +15,23 @@
 
   <search-box [(text)]="searchText" (doSearch)="search()"></search-box>
 
-  <div class="latest-book-group">
-    <span class="header">最新图书</span>
-    <div *ngFor="let book of latestBooks">
-      <a class="latest-book-link" (click)="goBookDetail(book)">{{book.title}}</a>
-      <br>
+  <div style="padding-top: 35px">
+    <ion-segment [(ngModel)]="bookListType" color="dark">
+      <ion-segment-button value="hot">
+        <ion-icon name="flame"></ion-icon><span>热门</span>
+      </ion-segment-button>
+      <ion-segment-button value="latest">
+        <ion-icon name="bulb"></ion-icon><span>最新</span>
+      </ion-segment-button>
+    </ion-segment>
+    <div class="book-group" inset *ngIf="bookListType=='latest'">
+      <div *ngFor="let book of latestBooks">
+        <a class="latest-book-link" (click)="goBookDetail(book)">{{book.title}}</a>
+        <br>
+      </div>
     </div>
+
+
   </div>
 
 </ion-content>
