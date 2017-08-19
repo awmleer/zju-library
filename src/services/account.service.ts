@@ -75,6 +75,13 @@ export class AccountService {
     });
   }
 
+  logout(){
+    this.user=null;
+    this.username=null;
+    this.password=null;
+    this.saveAccount();
+  }
+
   freshUserInfo():Promise<null>{
     return this.http.get(CONST.libraryUrl+'/X',{
       params:{

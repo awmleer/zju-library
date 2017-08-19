@@ -11,7 +11,10 @@
   <div class="reader-card">
     <img src="assets/image/reader-card.svg">
     <p>
-      {{user?user.name:'未登录'}}
+      <span *ngIf="!user">未登录</span>
+      <span *ngIf="user">
+        {{user.name}}<br>{{user.studentId}}
+      </span>
     </p>
   </div>
 
@@ -28,7 +31,7 @@
       <ion-icon name="ios-log-in" item-start></ion-icon>
       登录
     </button>
-    <button ion-item (click)="goAboutPage()" *ngIf="user">
+    <button ion-item (click)="logout()" *ngIf="user">
       <ion-icon name="ios-log-out" item-start></ion-icon>
       退出登录
     </button>

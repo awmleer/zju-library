@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import {AccountService} from "../../services/account.service";
 import {AboutPage} from "../about/about";
 import {LoginPage} from "../login/login";
+import {ToastService} from "../../services/toast.service";
 
 
 @Component({
@@ -13,6 +14,7 @@ export class MePage {
 
   constructor(
     public navCtrl: NavController,
+    private toastSvc: ToastService,
     private accountSvc: AccountService
   ) {}
 
@@ -22,6 +24,11 @@ export class MePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MePage');
+  }
+
+  logout(){
+    this.accountSvc.logout();
+    this.toastSvc.toast('已成功退出登录');
   }
 
   goLoginPage(){
