@@ -5,6 +5,7 @@ import {AboutPage} from "../about/about";
 import {LoginPage} from "../login/login";
 import {ToastService} from "../../services/toast.service";
 import {UpdateService} from "../../services/update.service";
+import {BorrowHistoryPage} from "../borrow-history/borrow-history";
 
 
 @Component({
@@ -39,6 +40,10 @@ export class MePage {
 
   goLoginPage(){
     this.navCtrl.push(LoginPage);
+  }
+
+  goBorrowHistoryPage(){
+      this.navCtrl.push(BorrowHistoryPage);
   }
 
   goAboutPage(){

@@ -23,6 +23,7 @@ import {AccountService} from "../services/account.service";
 import {AboutPageModule} from "../pages/about/about.module";
 import {MePage} from "../pages/me/me";
 import {LoginPageModule} from "../pages/login/login.module";
+import {BorrowHistoryPageModule} from "../pages/borrow-history/borrow-history.module";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {LoginPageModule} from "../pages/login/login.module";
     BookSearchPageModule,
     AboutPageModule,
     LoginPageModule,
+    BorrowHistoryPageModule,
     ComponentsModule
   ],
   bootstrap: [IonicApp],

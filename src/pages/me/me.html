@@ -19,11 +19,11 @@
   </div>
 
   <ion-list>
-    <button ion-item (click)="goAboutPage()">
+    <button ion-item (click)="goAboutPage()" [disabled]="!user">
       <ion-icon name="ios-book-outline" item-start></ion-icon>
       我的借阅
     </button>
-    <button ion-item (click)="goAboutPage()">
+    <button ion-item (click)="goBorrowHistoryPage()" [disabled]="!user">
       <ion-icon name="ios-list-box-outline" item-start></ion-icon>
       借阅历史
     </button>
