@@ -7,6 +7,8 @@ import {CONST} from "../app/const";
 @Injectable()
 export class AccountService {
   private token:string;
+  user;
+
   constructor(
     private http: Http
   ) {}

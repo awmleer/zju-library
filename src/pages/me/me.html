@@ -7,6 +7,33 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <div class="reader-card">
+    <img src="assets/image/reader-card.svg">
+    <p>
+      未登录
+    </p>
+  </div>
 
+  <ion-list>
+    <button ion-item (click)="goAboutPage()">
+      <ion-icon name="ios-book-outline" item-start></ion-icon>
+      我的借阅
+    </button>
+    <button ion-item (click)="goAboutPage()">
+      <ion-icon name="ios-list-box-outline" item-start></ion-icon>
+      借阅历史
+    </button>
+    <button ion-item (click)="goAboutPage()" *ngIf="!user">
+      <ion-icon name="ios-log-in" item-start></ion-icon>
+      登录
+    </button>
+    <button ion-item (click)="goAboutPage()" *ngIf="user">
+      <ion-icon name="ios-log-out" item-start></ion-icon>
+      退出登录
+    </button>
+    <button ion-item (click)="goAboutPage()">
+      <ion-icon name="ios-information-circle-outline" item-start></ion-icon>关于
+    </button>
+  </ion-list>
 </ion-content>

@@ -1,3 +1,23 @@
 page-me {
-
+  div.reader-card{
+    text-align: center;
+    padding-bottom: 10px;
+    img{
+      width:40%;
+    }
+    p{
+      font-size: 1.7rem;
+      margin-top: -10px;
+    }
+  }
+  ion-list{
+    button{
+      ion-icon{
+        margin-right: 10px!important;
+      }
+      .item-inner{
+        margin-left: 0!important;
+      }
+    }
+  }
 }

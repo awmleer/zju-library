@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {AccountService} from "../../services/account.service";
+import {AboutPage} from "../about/about";
 
 
 @Component({
@@ -14,9 +15,17 @@ export class MePage {
     private accountSvc: AccountService
   ) {}
 
+  get user(){
+    return this.accountSvc.user;
+  }
+
   ionViewDidLoad() {
     this.accountSvc.login();
     console.log('ionViewDidLoad MePage');
+  }
+
+  goAboutPage(){
+    this.navCtrl.push(AboutPage);
   }
 
 }
