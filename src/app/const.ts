@@ -3,7 +3,7 @@ export const CONST={
   ossUrl:'http://qiniu.zjulibrary.sparker.top',
   version:{
     major:1,
-    minor:0,
+    minor:1,
     patch:0
   }
 };

@@ -15,7 +15,7 @@ export class UpdateService {
 
 
   checkUpdate():Promise<boolean>{
-    return this.http.get(CONST.ossUrl+'/version.json').toPromise().then((response:Response)=>{
+    return this.http.get(CONST.ossUrl+`/version.json?t=${Date.now()}`).toPromise().then((response:Response)=>{
       this.latestVersion=response.json();
       this.hasNewVersion=(
         (this.latestVersion.major > CONST.version.major)||
