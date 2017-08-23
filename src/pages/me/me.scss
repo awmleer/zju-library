@@ -6,6 +6,10 @@ page-me {
       width:40%;
       max-width: 20rem;
     }
+    img.inactive{
+      -webkit-filter: grayscale(100%) brightness(90%);
+      filter: grayscale(100%) brightness(90%);
+    }
     p{
       font-size: 1.5rem;
       margin-top: -10px;

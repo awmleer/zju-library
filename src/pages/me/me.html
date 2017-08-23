@@ -9,7 +9,7 @@
 
 <ion-content>
   <div class="reader-card">
-    <img src="assets/image/reader-card.svg">
+    <img src="assets/image/reader-card.svg" [class.inactive]="!user">
     <p>
       <span *ngIf="!user">未登录</span>
       <span *ngIf="user">

@@ -43,6 +43,20 @@ $ ./signApk.sh
 $ ionic cordova build ios --prod
 ```
 
+
+## Commit Notation
+
+- [+] add
+- [-] remove
+- [=] update
+- [$] init
+- [#] document
+- [^] improve
+- [~] refactor
+- [!] fix
+- [*] try
+
+
 注：
 
 由于*浙大图书馆*为商标，无法上架App Store，所以只能取名为*浙图*。
