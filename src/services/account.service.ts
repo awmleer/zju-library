@@ -41,11 +41,17 @@ export class AccountService {
   }
 
 
-  autoLogin(){
-    this.fetchAccount().then(()=>{
-      if (this.username && this.password) {
-        this.login(this.username,this.password);
-      }
+  autoLogin():Promise<null>{
+    return new Promise((resolve, reject) => {
+      this.fetchAccount().then(()=>{
+        if (this.username && this.password) {
+          this.login(this.username,this.password).then(() => {
+            resolve();
+          }).catch(() => {
+            reject();
+          });
+        }
+      });
     });
   }
 
@@ -75,6 +81,8 @@ export class AccountService {
           this.user=null;
           reject();
         }
+      }).catch(() => {
+        reject();
       });
     });
   }

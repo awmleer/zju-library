@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import {AccountService} from "../services/account.service";
+import {ToastService} from "../services/toast.service";
 
 @Component({
   templateUrl: 'app.html'
@@ -17,6 +18,7 @@ export class MyApp {
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     accountSvc: AccountService,
+    toastSvc: ToastService,
     config: Config
   ) {
     platform.ready().then(() => {
@@ -25,7 +27,9 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       config.set('ios','backButtonText','');
-      accountSvc.autoLogin();
+      accountSvc.autoLogin().catch(() => {
+        toastSvc.toast('尝试自动登录失败');
+      });
     });
   }
 }
