@@ -53,6 +53,20 @@ export class BookItem {
   dueDate:string=null;
 }
 
-// export class BookDouban(){
-//
-// }
+export class BookDouban {
+  tags:{
+    count:number;
+    name:string;
+    title:string;
+  }[];
+  rating:{
+    max:number;
+    numRaters:number;
+    average:number;
+    min:number;
+  };
+  image:string;
+  summary:string;
+  authorIntro:string;
+  catalog:string;
+}

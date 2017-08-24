@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {CONST} from "../app/const";
-import {BookDetail, BookItem, BookRecord, HotBook, LatestBook} from "../classes/book";
+import {BookDetail, BookDouban, BookItem, BookRecord, HotBook, LatestBook} from "../classes/book";
 
 
 @Injectable()
@@ -115,6 +115,15 @@ export class LibraryService {
         }
       }
       return book;
+    });
+  }
+
+
+  bookDouban(isbn:string):Promise<BookDouban>{
+    return this.http.get(CONST.doubanUrl+`/v2/book/isbn/${isbn}`).toPromise().then((response:Response) => {
+      let data = response.json();
+      data['authorIntro']=data['author_intro'];
+      return data;
     });
   }
 

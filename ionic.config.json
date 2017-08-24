@@ -6,6 +6,9 @@
     {
       "path": "/zju",
       "proxyUrl": "http://webpac.zju.edu.cn"
+    },{
+      "path": "/douban",
+      "proxyUrl": "https://api.douban.com"
     }
   ],
   "integrations": {

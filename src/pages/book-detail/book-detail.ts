@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {LibraryService} from "../../services/library.service";
-import {BookDetail, BookItem} from "../../classes/book";
+import {BookDetail, BookDouban, BookItem} from "../../classes/book";
 import {CollectionService} from "../../services/collection.service";
 import {ToastService} from "../../services/toast.service";
 import {BookItemsPage} from "../book-items/book-items";
@@ -14,8 +14,9 @@ import {BookItemsPage} from "../book-items/book-items";
   templateUrl: 'book-detail.html',
 })
 export class BookDetailPage {
-  book:BookDetail;
-  items:BookItem[];
+  detail:BookDetail;
+  douban:BookDouban;
+  // items:BookItem[];
   loading:Loading;
 
   constructor(
@@ -42,12 +43,12 @@ export class BookDetailPage {
 
 
   get bookLoaded(){
-    return (this.book && this.book.id);
+    return (this.detail && this.detail.id);
   }
 
   get isCollected():boolean{
     if (this.bookLoaded) {
-      return this.collectionSvc.isCollected(this.book.id);
+      return this.collectionSvc.isCollected(this.detail.id);
     }else{
       return false;
     }
@@ -77,33 +78,32 @@ export class BookDetailPage {
     }).catch(()=>{
       refresher.complete();
       this.toastSvc.toast('加载失败');
-    })
+    });
   }
 
   freshenBookData():Promise<null>{
     return new Promise((resolve, reject) => {
-      this.librarySvc.bookDetail(this.base,this.id).then(book=>{
-        // console.log(book);
-        this.book=book;
-        resolve();
-      }).catch(()=>{
-          reject();
+      this.librarySvc.bookDetail(this.base,this.id).then(detail=>{
+        this.librarySvc.bookDouban(detail.ISBN).then(douban=>{
+          this.detail=detail;
+          this.douban=douban;
+          resolve();
+        });
       });
     });
-
   }
 
   toggleCollect(){
     if (this.isCollected) {
-      this.collectionSvc.unCollect(this.book.id);
+      this.collectionSvc.unCollect(this.detail.id);
     }else{
       this.collectionSvc.collect({
-        bookId:this.book.id,
-        title:this.book.title,
-        author:this.book.author,
-        callNumber:this.items.length>0?this.items[0].callNumber:'',
-        press:this.book.press.name,
-        year:this.book.year
+        bookId:this.detail.id,
+        title:this.detail.title,
+        author:this.detail.author,
+        callNumber:this.detail.classNumber,//TODO
+        press:this.detail.press.name,
+        year:this.detail.year
       });
     }
   }

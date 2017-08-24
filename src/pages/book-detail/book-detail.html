@@ -21,9 +21,9 @@
   <div *ngIf="bookLoaded" class="book-title">
     <div class="content">
       <h1>
-        {{book.title}}<br>
+        {{detail.title}}<br>
       </h1>
-      <span>{{book.author}}&nbsp;&nbsp;&nbsp;{{book.classNumber}}</span>
+      <span>{{detail.author}}&nbsp;&nbsp;&nbsp;{{detail.classNumber}}</span>
     </div>
   </div>
 
@@ -33,16 +33,17 @@
 
   <ion-card *ngIf="bookLoaded" class="card-book-detail">
     <ion-card-content>
-      系统图书编号 {{book.id}}<br>
-      ISBN {{book.ISBN?book.ISBN:'暂无'}}<br>
-      作者 {{book.author}}<br>
-      编者 {{book.editor}}<br>
-      分类号 {{book.classNumber}}<br>
-      出版社 {{book.press.name}}({{book.press.location}})<br>
-      出版年 {{book.year}}<br>
-      页数 {{book.pageCount}}<br>
-      价格 {{book.price}}<br>
-      装帧 {{book.bindingType}}<br>
+      {{douban.rating.average}}
+      系统图书编号 {{detail.id}}<br>
+      ISBN {{detail.ISBN?detail.ISBN:'暂无'}}<br>
+      作者 {{detail.author}}<br>
+      编者 {{detail.editor}}<br>
+      分类号 {{detail.classNumber}}<br>
+      出版社 {{detail.press.name}}({{detail.press.location}})<br>
+      出版年 {{detail.year}}<br>
+      页数 {{detail.pageCount}}<br>
+      价格 {{detail.price}}<br>
+      装帧 {{detail.bindingType}}<br>
     </ion-card-content>
   </ion-card>
 
