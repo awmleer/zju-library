@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <button class="button-collect" ion-button clear icon-only color="white" (click)="toggleCollect()">
+  <button *ngIf="bookLoaded" class="button-collect" ion-button clear icon-only color="white" (click)="toggleCollect()">
     <ion-icon [name]="isCollected?'md-heart':'md-heart-outline'"></ion-icon>
   </button>
 
