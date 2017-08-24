@@ -26,6 +26,7 @@ import {LoginPageModule} from "../pages/login/login.module";
 import {BorrowHistoryPageModule} from "../pages/borrow-history/borrow-history.module";
 import {CookieModule} from "ngx-cookie";
 import {SocialSharing} from "@ionic-native/social-sharing";
+import {BookItemsPageModule} from "../pages/book-items/book-items.module";
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {SocialSharing} from "@ionic-native/social-sharing";
     AboutPageModule,
     LoginPageModule,
     BorrowHistoryPageModule,
+    BookItemsPageModule,
     ComponentsModule
   ],
   bootstrap: [IonicApp],

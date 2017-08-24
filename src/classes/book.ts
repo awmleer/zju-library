@@ -52,3 +52,7 @@ export class BookItem {
   borrowed:boolean=false;
   dueDate:string=null;
 }
+
+// export class BookDouban(){
+//
+// }

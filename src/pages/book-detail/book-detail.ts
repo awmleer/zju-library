@@ -4,6 +4,7 @@ import {LibraryService} from "../../services/library.service";
 import {BookDetail, BookItem} from "../../classes/book";
 import {CollectionService} from "../../services/collection.service";
 import {ToastService} from "../../services/toast.service";
+import {BookItemsPage} from "../book-items/book-items";
 
 
 
@@ -13,8 +14,6 @@ import {ToastService} from "../../services/toast.service";
   templateUrl: 'book-detail.html',
 })
 export class BookDetailPage {
-  id:string;
-  base:string;
   book:BookDetail;
   items:BookItem[];
   loading:Loading;
@@ -27,6 +26,19 @@ export class BookDetailPage {
     private loadingCtrl: LoadingController,
     private toastSvc: ToastService
   ) {}
+
+
+  get id():string{
+    return this.navParams.get('id');
+  }
+
+  get base():string{
+    let base=this.navParams.get('base');
+    if (!base) {
+      base='ZJU01';
+    }
+    return base;
+  }
 
 
   get bookLoaded(){
@@ -50,12 +62,7 @@ export class BookDetailPage {
   }
 
   ionViewDidLoad(){
-    this.id=this.navParams.get('id');
-    this.base=this.navParams.get('base');
-    if (!this.base) {
-      this.base='ZJU01';
-    }
-    this.freshBookData().then(()=>{
+    this.freshenBookData().then(()=>{
       this.loading.dismiss();
     }).catch(()=>{
       this.navCtrl.pop();
@@ -65,7 +72,7 @@ export class BookDetailPage {
   }
 
   doRefresh(refresher){
-    this.freshBookData().then(()=>{
+    this.freshenBookData().then(()=>{
       refresher.complete();
     }).catch(()=>{
       refresher.complete();
@@ -73,33 +80,17 @@ export class BookDetailPage {
     })
   }
 
-  freshBookData():Promise<null>{
+  freshenBookData():Promise<null>{
     return new Promise((resolve, reject) => {
       this.librarySvc.bookDetail(this.base,this.id).then(book=>{
         // console.log(book);
         this.book=book;
-        this.librarySvc.bookItems(this.base,this.id).then(items=>{
-          // console.log(items);
-          this.items=items;
-          resolve();
-        }).catch(()=>{
-            reject();
-        });
+        resolve();
       }).catch(()=>{
           reject();
       });
     });
 
-  }
-
-  get borrowedItemsCount():number{
-    let count=0;
-    for(let item of this.items){
-      if (item.borrowed) {
-        count++;
-      }
-    }
-    return count;
   }
 
   toggleCollect(){
@@ -115,6 +106,13 @@ export class BookDetailPage {
         year:this.book.year
       });
     }
+  }
+
+  viewBookItems(){
+    this.navCtrl.push(BookItemsPage,{
+      'id':this.id,
+      'base':this.base
+    });
   }
 
 }

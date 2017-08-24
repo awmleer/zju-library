@@ -24,13 +24,13 @@ export class HomePage {
   bookListType:'hot'|'latest'='hot';
 
   ionViewDidLoad(){
-    this.freshLatestBooks();
-    this.freshHotBooks();
+    this.freshenLatestBooks();
+    this.freshenHotBooks();
   }
 
   doRefresh(refresher){
-    this.freshHotBooks().then(()=>{
-      this.freshLatestBooks().then(()=>{
+    this.freshenHotBooks().then(()=>{
+      this.freshenLatestBooks().then(()=>{
         refresher.complete();
       });
     }).catch(()=>{
@@ -39,7 +39,7 @@ export class HomePage {
   }
 
 
-  freshHotBooks():Promise<null>{
+  freshenHotBooks():Promise<null>{
     return this.librarySvc.hotBooks().then((books)=>{
         this.hotBooks=books;
     }).catch(()=>{
@@ -48,7 +48,7 @@ export class HomePage {
     });
   }
 
-  freshLatestBooks():Promise<null>{
+  freshenLatestBooks():Promise<null>{
     return this.librarySvc.latestBooks().then(books=>{
       this.latestBooks=books;
     }).catch(()=>{

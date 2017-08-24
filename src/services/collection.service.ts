@@ -9,10 +9,10 @@ export class CollectionService {
   constructor(
     private storage: Storage
   ) {
-    this.freshCollections();
+    this.freshenCollections();
   }
 
-  freshCollections(){
+  freshenCollections(){
     this.storage.get('collections').then(data=>{
       if (Object.prototype.toString.call(data) === '[object Array]') {
         this.collections=data;

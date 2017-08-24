@@ -65,21 +65,4 @@ page-book-detail {
     width: calc(100% - 60px);
   }
 
-  .item-group{
-    padding:0 30px;
-    $border: solid 1px #d6d6d6;
-    ion-badge{
-      float: right;
-    }
-    .item{
-      width:100%;
-      padding:6px 0;
-      border-top: $border;
-      border-collapse: collapse;
-    }
-    .item:last-of-type{
-      border-bottom: $border;
-    }
-  }
-
 }

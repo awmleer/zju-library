@@ -39,20 +39,14 @@
       编者 {{book.editor}}<br>
       分类号 {{book.classNumber}}<br>
       出版社 {{book.press.name}}({{book.press.location}})<br>
+      出版年 {{book.year}}<br>
       页数 {{book.pageCount}}<br>
       价格 {{book.price}}<br>
-      出版年份 {{book.year}}<br>
-      装订类型 {{book.bindingType}}<br>
+      装帧 {{book.bindingType}}<br>
     </ion-card-content>
   </ion-card>
-  <div *ngIf="bookLoaded && items" class="item-group">
-    <span>共{{items.length}}单册/{{borrowedItemsCount}}在借</span>
-    <div *ngFor="let item of items" class="item">
-      <ion-badge *ngIf="item.requested" color="gray">被预约</ion-badge>
-      <ion-badge *ngIf="item.borrowed" color="gray">已借出</ion-badge>
-      {{item.callNumber}}<br>
-      {{item.subLibrary}}<br>
-      <span *ngIf="item.dueDate">预计于{{item.dueDate}}归还</span>
-    </div>
-  </div>
+
+
+  <button ion-button outline color="dark" (click)="viewBookItems()">查看单册状态</button>
+
 </ion-content>

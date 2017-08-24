@@ -74,7 +74,7 @@ export class AccountService {
           this.username=username;
           this.password=password;
           this.saveAccount();
-          this.freshUserInfo().then(()=>{
+          this.freshenUserInfo().then(()=>{
             resolve();
           });
         }else{
@@ -95,7 +95,7 @@ export class AccountService {
     this.cookieSvc.remove('ALEPH_SESSION_ID');
   }
 
-  freshUserInfo():Promise<null>{
+  freshenUserInfo():Promise<null>{
     return this.http.get(CONST.libraryUrl+'/X',{
       params:{
         'op':'bor-info',
