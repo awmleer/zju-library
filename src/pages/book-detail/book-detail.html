@@ -37,11 +37,17 @@
         <div class="left">{{douban.rating.average}}</div>
         <div class="right">
           <div class="stars">
-            <ion-icon name="md-star"></ion-icon>
-            <ion-icon name="md-star"></ion-icon>
-            <ion-icon name="md-star"></ion-icon>
-            <ion-icon name="md-star-half"></ion-icon>
-            <ion-icon name="md-star-outline"></ion-icon>
+            <ion-icon name="md-star" *ngIf="rateRounded>=2"></ion-icon>
+            <ion-icon name="md-star" *ngIf="rateRounded>=4"></ion-icon>
+            <ion-icon name="md-star" *ngIf="rateRounded>=6"></ion-icon>
+            <ion-icon name="md-star" *ngIf="rateRounded>=8"></ion-icon>
+            <ion-icon name="md-star" *ngIf="rateRounded>=10"></ion-icon>
+            <ion-icon name="md-star-half" *ngIf="rateRounded%2>=1"></ion-icon>
+            <ion-icon name="md-star-outline" *ngIf="rateRounded<9"></ion-icon>
+            <ion-icon name="md-star-outline" *ngIf="rateRounded<7"></ion-icon>
+            <ion-icon name="md-star-outline" *ngIf="rateRounded<5"></ion-icon>
+            <ion-icon name="md-star-outline" *ngIf="rateRounded<3"></ion-icon>
+            <ion-icon name="md-star-outline" *ngIf="rateRounded<1"></ion-icon>
           </div>
           <div class="raters" *ngIf="douban.rating.numRaters">
             {{douban.rating.numRaters}}人评价
@@ -64,6 +70,19 @@
 
   <div class="content" *ngIf="bookLoaded">
     <button ion-button block outline color="dark" (click)="viewBookItems()">查看单册状态</button>
+    <h3>简介</h3>
+    <div class="book-intro">
+      <img [src]="douban.image">
+      <p [innerText]="douban.summary"></p>
+      <p *ngIf="!douban.summary">暂无</p>
+    </div>
+    <div class="tags">
+      <ion-badge color="gray" *ngFor="let tag of douban.tags">{{tag.title}}</ion-badge>
+    </div>
+    <h3 *ngIf="douban.authorIntro">作者介绍</h3>
+    <div [innerText]="douban.authorIntro"></div>
+    <h3 *ngIf="douban.catalog">目录</h3>
+    <div [innerText]="douban.catalog"></div>
   </div>
 
 </ion-content>

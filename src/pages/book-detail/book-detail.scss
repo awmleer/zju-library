@@ -91,6 +91,20 @@ page-book-detail {
 
   div.content{
     padding:0 30px;
+    p{
+      line-height: 1.5em;
+    }
+    div.book-intro{
+      img{
+        float: left;
+        margin: 0 1rem 0.5rem 0;
+      }
+    }
+    div.tags{
+      ion-badge{
+        margin:0.2em 0.6em 0.2em 0;
+      }
+    }
   }
 
 }

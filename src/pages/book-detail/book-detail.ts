@@ -54,6 +54,11 @@ export class BookDetailPage {
     }
   }
 
+
+  get rateRounded():number{
+    return Math.round(this.douban.rating.average);
+  }
+
   ionViewWillLoad(){
     this.loading=this.loadingCtrl.create({
       spinner: 'dots',
