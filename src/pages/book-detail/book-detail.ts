@@ -106,7 +106,7 @@ export class BookDetailPage {
         bookId:this.detail.id,
         title:this.detail.title,
         author:this.detail.author,
-        callNumber:this.detail.classNumber,//TODO
+        classNumber:this.detail.classNumber,
         press:this.detail.press.name,
         year:this.detail.year
       });

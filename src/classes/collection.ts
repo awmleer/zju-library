@@ -2,7 +2,7 @@ export class BookCollection{
   bookId:string;
   title:string;
   author:string;
-  callNumber:string;
+  classNumber:string;
   press:string;
   year:string;
 }
