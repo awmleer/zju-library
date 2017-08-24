@@ -33,7 +33,22 @@
 
   <ion-card *ngIf="bookLoaded" class="card-book-detail">
     <ion-card-content>
-      {{douban.rating.average}}
+      <div class="rating" *ngIf="douban.rating">
+        <div class="left">{{douban.rating.average}}</div>
+        <div class="right">
+          <div class="stars">
+            <ion-icon name="md-star"></ion-icon>
+            <ion-icon name="md-star"></ion-icon>
+            <ion-icon name="md-star"></ion-icon>
+            <ion-icon name="md-star-half"></ion-icon>
+            <ion-icon name="md-star-outline"></ion-icon>
+          </div>
+          <div class="raters" *ngIf="douban.rating.numRaters">
+            {{douban.rating.numRaters}}人评价
+          </div>
+          <div></div>
+        </div>
+      </div>
       系统图书编号 {{detail.id}}<br>
       ISBN {{detail.ISBN?detail.ISBN:'暂无'}}<br>
       作者 {{detail.author}}<br>
@@ -47,7 +62,8 @@
     </ion-card-content>
   </ion-card>
 
-
-  <button ion-button outline color="dark" (click)="viewBookItems()">查看单册状态</button>
+  <div class="content" *ngIf="bookLoaded">
+    <button ion-button block outline color="dark" (click)="viewBookItems()">查看单册状态</button>
+  </div>
 
 </ion-content>

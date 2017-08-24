@@ -65,4 +65,32 @@ page-book-detail {
     width: calc(100% - 60px);
   }
 
+
+  div.rating{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    div.left{
+      flex:initial;
+      font-size: 3.6rem;
+      padding: 0 1.5rem 0 0;
+    }
+    div.right{
+      flex:1;
+      div.stars{
+        ion-icon{
+          color: #ffac2d;
+          padding: 0 0;
+        }
+      }
+    }
+  }
+
+  div.content{
+    padding:0 30px;
+  }
+
 }
