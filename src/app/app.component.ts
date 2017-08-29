@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import {AccountService} from "../services/account.service";
 import {ToastService} from "../services/toast.service";
+import {AppRate} from "@ionic-native/app-rate";
 
 @Component({
   templateUrl: 'app.html'
@@ -20,6 +21,7 @@ export class MyApp {
     accountSvc: AccountService,
     toastSvc: ToastService,
     config: Config,
+    appRate: AppRate,
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -27,6 +29,18 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       config.set('ios','backButtonText','');
+      if (platform.is('ios')) {
+        appRate.preferences = {
+          useLanguage:'zh-Hans',
+          usesUntilPrompt: 5,
+          displayAppName:'浙图',
+          promptAgainForEachNewVersion:false,
+          storeAppURL: {
+            ios: '1271782243',
+          }
+        };
+        appRate.promptForRating(false);
+      }
       accountSvc.autoLogin().catch(() => {
         toastSvc.toast('尝试自动登录失败');
       });

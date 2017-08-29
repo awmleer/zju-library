@@ -28,6 +28,7 @@ import {CookieModule} from "ngx-cookie";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {BookItemsPageModule} from "../pages/book-items/book-items.module";
 import {Clipboard} from "@ionic-native/clipboard";
+import {AppRate} from "@ionic-native/app-rate";
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {Clipboard} from "@ionic-native/clipboard";
     InAppBrowser,
     SocialSharing,
     Clipboard,
+    AppRate,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
