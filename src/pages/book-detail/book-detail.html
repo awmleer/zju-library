@@ -33,7 +33,7 @@
 
   <ion-card *ngIf="bookLoaded" class="card-book-detail">
     <ion-card-content>
-      <div class="rating" *ngIf="douban.rating">
+      <div class="rating" *ngIf="douban?.rating">
         <div class="left">{{douban.rating.average}}</div>
         <div class="right">
           <div class="stars">
@@ -68,7 +68,7 @@
     </ion-card-content>
   </ion-card>
 
-  <div class="content" *ngIf="bookLoaded">
+  <div class="content" *ngIf="bookLoaded && douban">
     <button ion-button block outline color="dark" (click)="viewBookItems()">查看单册状态</button>
     <h3>简介</h3>
     <div class="book-intro">

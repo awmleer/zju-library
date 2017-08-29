@@ -93,6 +93,9 @@ export class BookDetailPage {
           this.detail=detail;
           this.douban=douban;
           resolve();
+        }).catch(() => {
+          this.detail=detail;
+          resolve();
         });
       });
     });
