@@ -27,6 +27,7 @@ import {BorrowHistoryPageModule} from "../pages/borrow-history/borrow-history.mo
 import {CookieModule} from "ngx-cookie";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {BookItemsPageModule} from "../pages/book-items/book-items.module";
+import {Clipboard} from "@ionic-native/clipboard";
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import {BookItemsPageModule} from "../pages/book-items/book-items.module";
     ToastService,
     InAppBrowser,
     SocialSharing,
+    Clipboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

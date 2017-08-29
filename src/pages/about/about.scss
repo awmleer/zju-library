@@ -1,8 +1,28 @@
 page-about {
   .big-logo{
-    width:40%;
+    width:30vw;
+    background-color: #ffffff;
+    max-width: 10em;
+    box-shadow: 0 0 10px 5px rgba(158, 158, 158, 0.2);
+    display: inline-block;
+    border-radius: 1em;
+    padding:2rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+  h1{
+    font-weight: 300;
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  h6{
+    font-weight: 300;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
   }
   p{
+    font-weight: 350;
     line-height: 1.6em;
   }
 }

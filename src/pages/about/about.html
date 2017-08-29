@@ -9,17 +9,18 @@
 <ion-content padding>
   <div style="text-align: center;padding-bottom: 50px">
     <img src="assets/logo/logo.svg" class="big-logo">
+    <h1>浙图</h1>
+    <h6>检索和收藏浙江大学图书馆中的书目</h6>
     <p>
-      浙图<br>
-      检索和收藏浙江大学图书馆中的书目<br>
-      v{{version.major}}.{{version.minor}}.{{version.patch}}<br>
-      By <b>awmleer</b><br>
+      版本号 v{{version.major}}.{{version.minor}}.{{version.patch}}<br>
+      By awmleer<br>
       awmleer@sparker.xyz<br>
-      QQ 767928485<br>
-      如发现bug或有任何建议，随时可以联系我~<br>
       <br>
-      <ion-icon name="ionic"></ion-icon><br>
-      Based on ionic framework.<br>
+      欢迎加入QQ群<br>
+      <b>667447850</b><br>
+      <button ion-button outline small color="dark" (click)="copyToClipboard('667447850')">复制</button>
+      <br>
+      <br>
     </p>
     <p style="margin: 20px 0;" *ngIf="updateSvc.hasNewVersion">
       发现新版&nbsp;
