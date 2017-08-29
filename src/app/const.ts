@@ -4,7 +4,7 @@ export const CONST={
   doubanUrl:window['cordova']?'https://api.douban.com':'/douban',
   version:{
     major:1,
-    minor:1,
+    minor:2,
     patch:0
   }
 };

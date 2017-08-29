@@ -26,5 +26,15 @@ page-home {
       text-align: center;
       margin:12px 0;
     }
+    div.no-record{
+      width:100%;
+      text-align: center;
+      padding-top: 10vh;
+      color: #c8c8c8;
+      ion-icon{
+        font-size: 40vw;
+      }
+    }
   }
+
 }

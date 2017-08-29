@@ -25,18 +25,23 @@
       </ion-segment-button>
     </ion-segment>
 
-    <div class="book-group" inset *ngIf="bookListType=='latest'">
-      <div *ngFor="let book of latestBooks">
-        <a class="latest-book-link" (click)="goBookDetail(book.id,book.base)">{{book.title}}</a>
-      </div>
-    </div>
-
     <div class="book-group" inset *ngIf="bookListType=='hot'">
       <div *ngFor="let book of hotBooks">
         <a class="latest-book-link" (click)="goBookDetail(book.id,book.base)">{{book.title}}</a>
       </div>
+      <div *ngIf="hotBooks.length==0" class="no-record">
+        <ion-icon name="ios-archive-outline"></ion-icon>
+      </div>
     </div>
 
+    <div class="book-group" inset *ngIf="bookListType=='latest'">
+      <div *ngFor="let book of latestBooks">
+        <a class="latest-book-link" (click)="goBookDetail(book.id,book.base)">{{book.title}}</a>
+      </div>
+      <div *ngIf="latestBooks.length==0" class="no-record">
+        <ion-icon name="ios-archive-outline"></ion-icon>
+      </div>
+    </div>
 
 
   </div>
