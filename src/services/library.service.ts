@@ -80,7 +80,7 @@ export class LibraryService {
           let subField=subFields[j];
           let id=varField.getAttribute('id');
           let label=subField.getAttribute('label');
-          let nodeValue=subField.childNodes[0].nodeValue;
+          let nodeValue=(subField.childNodes&&subField.childNodes[0])?subField.childNodes[0].nodeValue:null;
           if (id=='200'){
             if (label == 'a') {
               book.title=nodeValue;

@@ -44,6 +44,12 @@ $ ionic cordova build ios --prod
 ```
 
 
+### 上传apk
+
+```bash
+$ qshell -m fput zjulibrary apk/zjuLibraryLatest.apk apk/zjuLibraryx.x.x.apk true
+```
+
 ## Commit Notation
 
 - [+] add

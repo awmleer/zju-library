@@ -97,6 +97,8 @@ export class BookDetailPage {
           this.detail=detail;
           resolve();
         });
+      }).catch(() => {
+        reject();
       });
     });
   }
