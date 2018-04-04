@@ -1,21 +1,21 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {CONST} from "../app/const";
 import {BookDetail, BookDouban, BookItem, BookRecord, HotBook, LatestBook} from "../classes/book";
+import {HttpClient} from "@angular/common/http";
 
 
 @Injectable()
 export class LibraryService {
   constructor(
-    private http: Http
+    private http: HttpClient
   ) {}
 
   latestBooks():Promise<LatestBook[]>{
     return this.http.get(
-      CONST.libraryUrl+'/cgi-bin/newbook.cgi?base=ALL&cls=ALL&date=180'
-    ).toPromise().then((response:Response)=>{
-      // console.log(response.text());
+      CONST.libraryUrl+'/cgi-bin/newbook.cgi?base=ALL&cls=ALL&date=180',
+      {responseType: 'text'}
+    ).toPromise().then((data)=>{
       let books:LatestBook[]=[];
       function newbook(obj){
         for (let key in obj) {
@@ -29,14 +29,17 @@ export class LibraryService {
         }
       }
       function nav(){}
-      eval(response.text());
+      eval(data);
       return books;
     });
   }
 
   hotBooks():Promise<HotBook[]>{
-    return this.http.get(CONST.libraryUrl+'/opac_lcl_chi/loan_top_ten/loan.ALL.ALL.y').toPromise().then((response:Response)=>{
-      let html=(new DOMParser()).parseFromString(response.text(),'text/html');
+    return this.http.get(
+      CONST.libraryUrl+'/opac_lcl_chi/loan_top_ten/loan.ALL.ALL.y',
+      {responseType: 'text'}
+    ).toPromise().then((data)=>{
+      let html=(new DOMParser()).parseFromString(data,'text/html');
       let books:HotBook[]=[];
       let lis=html.getElementsByTagName('li');
       for (let i = 0; i < lis.length; i++) {
@@ -59,10 +62,11 @@ export class LibraryService {
         'op':'find-doc',
         'doc_num':id,
         'base':base
-      }
-    }).toPromise().then((response:Response)=>{
+      },
+      responseType: 'text'
+    }).toPromise().then((data)=>{
       let book=new BookDetail();
-      let xml=(new DOMParser()).parseFromString(response.text(),'text/xml');
+      let xml=(new DOMParser()).parseFromString(data,'text/xml');
       let fixFields=xml.getElementsByTagName('fixfield');
       for (let i = 0; i < fixFields.length; i++) {
         let fixField=fixFields[i];
@@ -120,8 +124,7 @@ export class LibraryService {
 
 
   bookDouban(isbn:string):Promise<BookDouban>{
-    return this.http.get(CONST.doubanUrl+`/v2/book/isbn/${isbn}`).toPromise().then((response:Response) => {
-      let data = response.json();
+    return this.http.get(CONST.doubanUrl+`/v2/book/isbn/${isbn}`).toPromise().then((data) => {
       data['authorIntro']=data['author_intro'];
       return data;
     });
@@ -134,9 +137,10 @@ export class LibraryService {
         'op':'item-data',
         'doc_num':id,
         'base':base
-      }
-    }).toPromise().then((response:Response)=>{
-      let xml=(new DOMParser()).parseFromString(response.text(),'text/xml');
+      },
+      responseType: 'text'
+    }).toPromise().then((data)=>{
+      let xml=(new DOMParser()).parseFromString(data,'text/xml');
       let items:BookItem[]=[];
       let xmlItems=xml.getElementsByTagName('item');
       for (let i = 0; i < xmlItems.length; i++) {
@@ -188,9 +192,10 @@ export class LibraryService {
         'code':'wrd',
         'request':text,
         'base':'ZJU01'
-      }
-    }).toPromise().then((response:Response)=>{
-      let xml=(new DOMParser()).parseFromString(response.text(),'text/xml');
+      },
+      responseType: 'text'
+    }).toPromise().then((data)=>{
+      let xml=(new DOMParser()).parseFromString(data,'text/xml');
       if (xml.getElementsByTagName('error').length > 0) {//search error (eg. empty set)
         return {
           setId:null,
@@ -213,9 +218,10 @@ export class LibraryService {
         'set_entry':`${start}-${start+length-1}`,
         'set_number':setId,
         'base':'ZJU01'
-      }
-    }).toPromise().then((response:Response)=>{
-      let xml=(new DOMParser()).parseFromString(response.text(),'text/xml');
+      },
+      responseType: 'text'
+    }).toPromise().then((data)=>{
+      let xml=(new DOMParser()).parseFromString(data,'text/xml');
       let records=xml.getElementsByTagName('record');
       let books:BookRecord[]=[];
       for (let k = 0; k < records.length; k++) {

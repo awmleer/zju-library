@@ -53,7 +53,7 @@ export class BookItemsPage {
   }
 
 
-  freshenItems():Promise<null>{
+  freshenItems():Promise<void>{
     return this.librarySvc.bookItems(this.base,this.id).then(items=>{
       // console.log(items);
       this.items=items;

@@ -86,7 +86,7 @@ export class BookDetailPage {
     });
   }
 
-  freshenBookData():Promise<null>{
+  freshenBookData():Promise<void>{
     return new Promise((resolve, reject) => {
       this.librarySvc.bookDetail(this.base,this.id).then(detail=>{
         this.librarySvc.bookDouban(detail.ISBN).then(douban=>{

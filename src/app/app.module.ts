@@ -10,7 +10,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LibraryService} from "../services/library.service";
-import {HttpModule} from "@angular/http";
 import {BookDetailPageModule} from "../pages/book-detail/book-detail.module";
 import {ComponentsModule} from "../components/components.module";
 import {BookSearchPageModule} from "../pages/book-search/book-search.module";
@@ -29,6 +28,7 @@ import {SocialSharing} from "@ionic-native/social-sharing";
 import {BookItemsPageModule} from "../pages/book-items/book-items.module";
 import {Clipboard} from "@ionic-native/clipboard";
 import {AppRate} from "@ionic-native/app-rate";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import {AppRate} from "@ionic-native/app-rate";
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     CookieModule.forRoot(),

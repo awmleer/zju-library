@@ -39,7 +39,7 @@ export class HomePage {
   }
 
 
-  freshenHotBooks():Promise<null>{
+  freshenHotBooks():Promise<void>{
     return this.librarySvc.hotBooks().then((books)=>{
         this.hotBooks=books;
     }).catch(()=>{
@@ -48,7 +48,7 @@ export class HomePage {
     });
   }
 
-  freshenLatestBooks():Promise<null>{
+  freshenLatestBooks():Promise<void>{
     return this.librarySvc.latestBooks().then(books=>{
       this.latestBooks=books;
     }).catch(()=>{

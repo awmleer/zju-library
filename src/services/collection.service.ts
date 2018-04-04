@@ -22,7 +22,7 @@ export class CollectionService {
     });
   }
 
-  saveCollections():Promise<null>{
+  saveCollections():Promise<void>{
     return this.storage.set('collections',this.collections);
   }
 
@@ -38,12 +38,12 @@ export class CollectionService {
     return false;
   }
 
-  collect(newCollection:BookCollection):Promise<null>{
+  collect(newCollection:BookCollection):Promise<void>{
     this.collections.push(newCollection);
     return this.saveCollections();
   }
 
-  unCollect(bookId:string):Promise<null>{
+  unCollect(bookId:string):Promise<void>{
     for (let i = 0; i < this.collections.length; i++) {
       if (bookId == this.collections[i].bookId) {
         this.collections.splice(i,1);
@@ -53,7 +53,7 @@ export class CollectionService {
     return this.saveCollections();
   }
 
-  deleteAllCollections():Promise<null>{
+  deleteAllCollections():Promise<void>{
     this.collections=[];
     return this.saveCollections();
   }

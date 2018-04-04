@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Http, Headers, Response, URLSearchParams, RequestOptionsArgs} from '@angular/http';
+import {HttpHeaders} from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 import {CONST} from "../app/const";
 import {User} from "../classes/user";
 import {Storage} from "@ionic/storage";
 import {HistoryBorrow} from "../classes/borrow";
 import {CookieService} from "ngx-cookie";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 
 @Injectable()
@@ -16,13 +17,13 @@ export class AccountService {
   private alephSessionId:string;
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private cookieSvc: CookieService,
     private storage: Storage
   ) {}
 
-  fetchAccount():Promise<null>{
-    return new Promise((resolve, reject) => {
+  fetchAccount():Promise<void>{
+    return new Promise<void>((resolve, reject) => {
       this.storage.get('account').then((data)=>{
         if (data) {
           if (data['username'])this.username=data['username'];
@@ -33,7 +34,7 @@ export class AccountService {
     });
   }
 
-  saveAccount():Promise<null>{
+  saveAccount():Promise<void>{
     return this.storage.set('account',{
       username:this.username,
       password:this.password
@@ -41,8 +42,8 @@ export class AccountService {
   }
 
 
-  autoLogin():Promise<null>{
-    return new Promise((resolve, reject) => {
+  autoLogin():Promise<void>{
+    return new Promise<void>((resolve, reject) => {
       this.fetchAccount().then(()=>{
         if (this.username && this.password) {
           this.login(this.username,this.password).then(() => {
@@ -55,33 +56,40 @@ export class AccountService {
     });
   }
 
-  login(username:string,password:string):Promise<null>{
-    return new Promise((resolve, reject) => {
-      let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
-      let  body = new URLSearchParams();
+  login(username:string,password:string):Promise<void>{
+    return new Promise<void>((resolve, reject) => {
+      let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+      let  body = new HttpParams();
       body.append('func', 'login-session');
       body.append('login_source', 'bor-info');
       body.append('bor_id', username);
       body.append('bor_verification', password);
       body.append('bor_library', 'ZJU50');
       this.http.post(CONST.libraryUrl+`/F`, body.toString(), {
-        headers:headers
-      }).toPromise().then((response:Response)=>{
-        if (response.text().search('校园卡统一身份认证登录')==-1) {
-          let alephSessionId=response.text().match(/ALEPH_SESSION_ID ?= ?([A-Z]|\d)+/)[0].replace(/ALEPH_SESSION_ID ?= ?/,'');
+        headers: headers,
+        responseType: 'text'
+      }).toPromise().then((data)=>{
+        console.log(data);
+        if (data.search('校园卡统一身份认证登录')==-1) {
+          let alephSessionId=data.match(/ALEPH_SESSION_ID ?= ?([A-Z]|\d)+/)[0].replace(/ALEPH_SESSION_ID ?= ?/,'');
           this.cookieSvc.put('ALEPH_SESSION_ID',alephSessionId);
           this.alephSessionId=alephSessionId;
           this.username=username;
           this.password=password;
-          this.saveAccount();
-          this.freshenUserInfo().then(()=>{
-            resolve();
+          this.saveAccount().then(() => {
+            this.freshenUserInfo().then(() => {
+              resolve();
+            });
           });
+          // Promise.all([,]).then(() => {
+          //
+          // });
         }else{
           this.user=null;
           reject();
         }
-      }).catch(() => {
+      }).catch((err) => {
+        console.log(err);
         reject();
       });
     });
@@ -95,15 +103,16 @@ export class AccountService {
     this.cookieSvc.remove('ALEPH_SESSION_ID');
   }
 
-  freshenUserInfo():Promise<null>{
+  freshenUserInfo():Promise<void>{
     return this.http.get(CONST.libraryUrl+'/X',{
       params:{
         'op':'bor-info',
         'bor_id':this.username,
         'verification':this.password
-      }
-    }).toPromise().then((response:Response)=>{
-      let xml=(new DOMParser()).parseFromString(response.text(),'text/xml');
+      },
+      responseType: 'text'
+    }).toPromise().then((data)=>{
+      let xml=(new DOMParser()).parseFromString(data,'text/xml');
       if (xml.getElementsByTagName('error').length>0){
         throw new Error();
       }
@@ -118,15 +127,15 @@ export class AccountService {
 
 
   getHistoryBorrows():Promise<HistoryBorrow[]>{
-    let options:RequestOptionsArgs={};
+    let httpOptions={
+      responseType: 'text'
+    };
     if (window.location.hostname == '') {
-      options={
-        headers:new Headers({'Cookie': 'ALEPH_SESSION_ID='+this.alephSessionId}),
-        withCredentials: true
-      };
+      httpOptions['headers']=new HttpHeaders({'Cookie': 'ALEPH_SESSION_ID='+this.alephSessionId});
+      httpOptions['withCredentials']=true;
     }
-    return this.http.get(CONST.libraryUrl+'/F?func=bor-history-loan&adm_library=ZJU50',options).toPromise().then((response:Response)=>{
-      let html=(new DOMParser()).parseFromString(response.text(),'text/html');
+    return this.http.get(CONST.libraryUrl+'/F?func=bor-history-loan&adm_library=ZJU50',httpOptions).toPromise().then((data)=>{
+      let html=(new DOMParser()).parseFromString(data,'text/html');
       let table=html.getElementsByTagName('table')[2];
       let borrows:HistoryBorrow[]=[];
       let trs=table.getElementsByTagName('tr');

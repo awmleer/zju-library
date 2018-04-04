@@ -71,7 +71,7 @@ export class BookSearchPage {
     });
   }
 
-  loadRecords():Promise<null>{
+  loadRecords():Promise<void>{
     // this.showLoading();
     return this.librarySvc.present(this.recordStartNumber,this.bulkLength,this.setId).then(bookRecords=>{
       Array.prototype.push.apply(this.bookRecords,bookRecords);
