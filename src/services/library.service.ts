@@ -124,7 +124,7 @@ export class LibraryService {
 
 
   bookDouban(isbn:string):Promise<BookDouban>{
-    return this.http.get(CONST.doubanUrl+`/v2/book/isbn/${isbn}`).toPromise().then((data) => {
+    return this.http.get(CONST.doubanUrl+`/v2/book/isbn/${isbn}`).toPromise().then((data:any) => {
       data['authorIntro']=data['author_intro'];
       return data;
     });

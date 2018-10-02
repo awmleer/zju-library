@@ -1,17 +1,17 @@
 {
   "name": "zjuLibrary",
-  "app_id": "",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "proxies": [
     {
       "path": "/zju",
       "proxyUrl": "http://webpac.zju.edu.cn"
-    },{
+    },
+    {
       "path": "/douban",
       "proxyUrl": "https://api.douban.com"
     }
-  ],
-  "integrations": {
-    "cordova": {}
-  }
+  ]
 }
