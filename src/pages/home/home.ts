@@ -15,7 +15,7 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private librarySvc: LibraryService,
-    private toastSvc: ToastService
+    private toastSvc: ToastService,
   ) {}
 
   latestBooks:LatestBook[]=[];

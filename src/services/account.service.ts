@@ -126,30 +126,30 @@ export class AccountService {
   }
 
 
-  getHistoryBorrows():Promise<HistoryBorrow[]>{
-    let httpOptions={
-      responseType: 'text'
-    };
-    if (window.location.hostname == '') {
-      httpOptions['headers']=new HttpHeaders({'Cookie': 'ALEPH_SESSION_ID='+this.alephSessionId});
-      httpOptions['withCredentials']=true;
-    }
-    return this.http.get(CONST.libraryUrl+'/F?func=bor-history-loan&adm_library=ZJU50',httpOptions).toPromise().then((data)=>{
-      let html=(new DOMParser()).parseFromString(data,'text/html');
-      let table=html.getElementsByTagName('table')[2];
-      let borrows:HistoryBorrow[]=[];
-      let trs=table.getElementsByTagName('tr');
-      for (let i = 1; i < trs.length; i++) {
-        let tds=trs[i].getElementsByTagName('td');
-        borrows.push({
-          bookName:tds[2].innerText,
-          author:tds[1].innerText,
-          subLibrary:tds[9].innerText,
-          returnDate:tds[6].innerText
-        });
-      }
-      return borrows;
-    });
-  }
+  // getHistoryBorrows():Promise<HistoryBorrow[]>{
+  //   let httpOptions={
+  //     responseType: 'text'
+  //   };
+  //   if (window.location.hostname == '') {
+  //     httpOptions['headers']=new HttpHeaders({'Cookie': 'ALEPH_SESSION_ID='+this.alephSessionId});
+  //     httpOptions['withCredentials']=true;
+  //   }
+  //   return this.http.get(CONST.libraryUrl+'/F?func=bor-history-loan&adm_library=ZJU50',httpOptions).toPromise().then((data)=>{
+  //     let html=(new DOMParser()).parseFromString(data,'text/html');
+  //     let table=html.getElementsByTagName('table')[2];
+  //     let borrows:HistoryBorrow[]=[];
+  //     let trs=table.getElementsByTagName('tr');
+  //     for (let i = 1; i < trs.length; i++) {
+  //       let tds=trs[i].getElementsByTagName('td');
+  //       borrows.push({
+  //         bookName:tds[2].innerText,
+  //         author:tds[1].innerText,
+  //         subLibrary:tds[9].innerText,
+  //         returnDate:tds[6].innerText
+  //       });
+  //     }
+  //     return borrows;
+  //   });
+  // }
 
 }

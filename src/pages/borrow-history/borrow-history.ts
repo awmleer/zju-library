@@ -18,7 +18,7 @@ export class BorrowHistoryPage {
     private navCtrl: NavController,
     private loadingCtrl: LoadingController,
     private accountSvc: AccountService,
-    private toastSvc: ToastService
+    private toastSvc: ToastService,
   ) {}
 
   ionViewDidLoad() {
@@ -27,15 +27,15 @@ export class BorrowHistoryPage {
       content: '加载中'
     });
     loading.present();
-    this.accountSvc.getHistoryBorrows().then((borrows)=>{
-      this.borrows=borrows;
-      loading.dismiss();
-    }).catch(()=>{
-      loading.dismiss().then(()=>{
-        this.navCtrl.pop();
-        this.toastSvc.toast('获取借阅历史失败');
-      });
-    });
+    // this.accountSvc.getHistoryBorrows().then((borrows)=>{
+    //   this.borrows=borrows;
+    //   loading.dismiss();
+    // }).catch(()=>{
+    //   loading.dismiss().then(()=>{
+    //     this.navCtrl.pop();
+    //     this.toastSvc.toast('获取借阅历史失败');
+    //   });
+    // });
   }
 
 }
