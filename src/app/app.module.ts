@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import {IonicApp, IonicModule, IonicErrorHandler, Platform} from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { CollectionPage } from '../pages/collection/collection';
@@ -27,7 +27,8 @@ import {SocialSharing} from "@ionic-native/social-sharing";
 import {BookItemsPageModule} from "../pages/book-items/book-items.module";
 import {Clipboard} from "@ionic-native/clipboard";
 import {AppRate} from "@ionic-native/app-rate";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpBackend, HttpClientModule, HttpXhrBackend} from '@angular/common/http';
+import {NativeHttpBackend, NativeHttpFallback, NativeHttpModule} from 'ionic-native-http-connection-backend'
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     HttpClientModule,
+    NativeHttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     BookDetailPageModule,
@@ -70,7 +72,8 @@ import {HttpClientModule} from "@angular/common/http";
     SocialSharing,
     Clipboard,
     AppRate,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: HttpBackend, useClass: NativeHttpFallback, deps: [Platform, NativeHttpBackend, HttpXhrBackend]},
   ]
 })
 export class AppModule {}

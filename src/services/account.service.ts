@@ -5,7 +5,6 @@ import {CONST} from "../app/const";
 import {User} from "../classes/user";
 import {Storage} from "@ionic/storage";
 import {HistoryBorrow} from "../classes/borrow";
-import {CookieService} from "ngx-cookie";
 import {HttpClient, HttpParams} from "@angular/common/http";
 
 
@@ -18,7 +17,6 @@ export class AccountService {
 
   constructor(
     private http: HttpClient,
-    private cookieSvc: CookieService,
     private storage: Storage
   ) {}
 
@@ -72,7 +70,7 @@ export class AccountService {
         console.log(data);
         if (data.search('校园卡统一身份认证登录')==-1) {
           let alephSessionId=data.match(/ALEPH_SESSION_ID ?= ?([A-Z]|\d)+/)[0].replace(/ALEPH_SESSION_ID ?= ?/,'');
-          this.cookieSvc.put('ALEPH_SESSION_ID',alephSessionId);
+          // this.cookieSvc.put('ALEPH_SESSION_ID',alephSessionId);
           this.alephSessionId=alephSessionId;
           this.username=username;
           this.password=password;
@@ -100,7 +98,7 @@ export class AccountService {
     this.username=null;
     this.password=null;
     this.saveAccount();
-    this.cookieSvc.remove('ALEPH_SESSION_ID');
+    // this.cookieSvc.remove('ALEPH_SESSION_ID');
   }
 
   freshenUserInfo():Promise<void>{

@@ -86,6 +86,11 @@
   resolved "http://registry.npm.taobao.org/@ionic-native/core/download/@ionic-native/core-4.15.0.tgz#4142bf76480607fc82fcdc2e3f0eae07bd63f5fb"
   integrity sha1-QUK/dkgGB/yC/NwuPw6uB71j9fs=
 
+"@ionic-native/http@^4.15.0":
+  version "4.15.0"
+  resolved "http://registry.npm.taobao.org/@ionic-native/http/download/@ionic-native/http-4.15.0.tgz#c7c770681184255da3ee448e7581a7c65f7d2dd4"
+  integrity sha1-x8dwaBGEJV2j7kSOdYGnxl99LdQ=
+
 "@ionic-native/in-app-browser@4.x":
   version "4.15.0"
   resolved "http://registry.npm.taobao.org/@ionic-native/in-app-browser/download/@ionic-native/in-app-browser-4.15.0.tgz#f666aada943ecbc7b620a55598bd04c8b84bdfe2"
@@ -2567,6 +2572,11 @@ ionic-angular@3.x:
   version "3.9.2"
   resolved "http://registry.npm.taobao.org/ionic-angular/download/ionic-angular-3.9.2.tgz#75053e4a422aaae7d7cd668cc92cfd5cb29d38cc"
   integrity sha1-dQU+SkIqqufXzWaMySz9XLKdOMw=
+
+ionic-native-http-connection-backend@^4.0.7:
+  version "4.0.7"
+  resolved "http://registry.npm.taobao.org/ionic-native-http-connection-backend/download/ionic-native-http-connection-backend-4.0.7.tgz#1666bef606df895d40dabce5d7bd926da4ecdd32"
+  integrity sha1-Fma+9gbfiV1A2rzl172SbaTs3TI=
 
 ionic-plugin-keyboard@^2.2.1:
   version "2.2.1"
