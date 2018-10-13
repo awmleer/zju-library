@@ -6,6 +6,7 @@ import {User} from "../classes/user";
 import {Storage} from "@ionic/storage";
 import {HistoryBorrow} from "../classes/borrow";
 import {HttpClient, HttpParams} from "@angular/common/http";
+import {LeanService} from './lean.service'
 
 
 @Injectable()
@@ -17,7 +18,8 @@ export class AccountService {
 
   constructor(
     private http: HttpClient,
-    private storage: Storage
+    private storage: Storage,
+    private leanSvc: LeanService,
   ) {}
 
   fetchAccount():Promise<void>{
@@ -44,7 +46,7 @@ export class AccountService {
     return new Promise<void>((resolve, reject) => {
       this.fetchAccount().then(()=>{
         if (this.username && this.password) {
-          this.login(this.username,this.password).then(() => {
+          this.logIn(this.username,this.password).then(() => {
             resolve();
           }).catch(() => {
             reject();
@@ -54,43 +56,13 @@ export class AccountService {
     });
   }
 
-  login(username:string,password:string):Promise<void>{
-    return new Promise<void>((resolve, reject) => {
-      let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-      let  body = new HttpParams();
-      body.append('func', 'login-session');
-      body.append('login_source', 'bor-info');
-      body.append('bor_id', username);
-      body.append('bor_verification', password);
-      body.append('bor_library', 'ZJU50');
-      this.http.post(CONST.libraryUrl+`/F`, body.toString(), {
-        headers: headers,
-        responseType: 'text'
-      }).toPromise().then((data)=>{
-        console.log(data);
-        if (data.search('校园卡统一身份认证登录')==-1) {
-          let alephSessionId=data.match(/ALEPH_SESSION_ID ?= ?([A-Z]|\d)+/)[0].replace(/ALEPH_SESSION_ID ?= ?/,'');
-          // this.cookieSvc.put('ALEPH_SESSION_ID',alephSessionId);
-          this.alephSessionId=alephSessionId;
-          this.username=username;
-          this.password=password;
-          this.saveAccount().then(() => {
-            this.freshenUserInfo().then(() => {
-              resolve();
-            });
-          });
-          // Promise.all([,]).then(() => {
-          //
-          // });
-        }else{
-          this.user=null;
-          reject();
-        }
-      }).catch((err) => {
-        console.log(err);
-        reject();
-      });
-    });
+  async logIn(username:string, password:string):Promise<void>{
+    console.log(this.leanSvc.AV.User.current());
+    await this.leanSvc.AV.User.logIn(username, password);
+  }
+
+  async signUp(username:string, password:string) {
+    await this.leanSvc.AV.User.signUp(username, password);
   }
 
   logout(){

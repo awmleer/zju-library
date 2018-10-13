@@ -22,20 +22,23 @@ export class LoginPage {
     private loadingCtrl: LoadingController
   ) {}
 
-  login(){
-    let loading=this.loadingCtrl.create({
+  async logIn(){
+    const loading=this.loadingCtrl.create({
       spinner: 'dots',
       content: '登录中'
     });
-    this.accountSvc.login(this.username,this.password).then(()=>{
-      this.navCtrl.pop().then(()=>{
-        this.toastSvc.toast('登录成功');
-      });
-    }).catch(()=>{
+    await loading.present();
+    try {
+      await this.accountSvc.logIn(this.username,this.password);
+      await this.navCtrl.pop();
+      this.toastSvc.toast('登录成功');
+    } catch(e) {
+      console.log(111);
+      console.log(e);
       loading.dismiss().then(()=>{
         this.toastSvc.toast('登录失败');
       });
-    });
+    }
   }
 
 }

@@ -51,6 +51,7 @@
     "ionic-native-http-connection-backend": "^4.0.7",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.x",
+    "leancloud-storage": "^3.10.0",
     "rxjs": "5.5.x",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.x"

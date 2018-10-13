@@ -29,6 +29,7 @@ import {Clipboard} from "@ionic-native/clipboard";
 import {AppRate} from "@ionic-native/app-rate";
 import {HttpBackend, HttpClientModule, HttpXhrBackend} from '@angular/common/http';
 import {NativeHttpBackend, NativeHttpFallback, NativeHttpModule} from 'ionic-native-http-connection-backend'
+import {LeanService} from '../services/lean.service'
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import {NativeHttpBackend, NativeHttpFallback, NativeHttpModule} from 'ionic-nat
     UpdateService,
     AccountService,
     ToastService,
+    LeanService,
     InAppBrowser,
     SocialSharing,
     Clipboard,
