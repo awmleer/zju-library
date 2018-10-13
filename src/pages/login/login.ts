@@ -4,7 +4,6 @@ import {AccountService} from "../../services/account.service";
 import {ToastService} from "../../services/toast.service";
 
 
-
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -31,13 +30,12 @@ export class LoginPage {
     try {
       await this.accountSvc.logIn(this.username,this.password);
       await this.navCtrl.pop();
-      this.toastSvc.toast('登录成功');
+      await this.toastSvc.toast('登录成功');
     } catch(e) {
       console.log(111);
       console.log(e);
-      loading.dismiss().then(()=>{
-        this.toastSvc.toast('登录失败');
-      });
+      await loading.dismiss();
+      await this.toastSvc.toast('登录失败');
     }
   }
 

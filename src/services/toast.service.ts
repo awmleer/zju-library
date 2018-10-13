@@ -10,9 +10,9 @@ export class ToastService {
 
   t: Toast;
 
-  toast(message:string,duration:number=2000):void{
+  async toast(message:string,duration:number=2000): Promise<void> {
     if (this.t) {
-      this.t.dismiss();
+      await this.t.dismiss();
     }
     this.t=this.toastCtrl.create({
       message: message,
@@ -21,6 +21,6 @@ export class ToastService {
       closeButtonText: 'OK',
       position: 'bottom'
     });
-    this.t.present();
+    await this.t.present();
   }
 }
