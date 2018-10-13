@@ -1,8 +1,7 @@
 {
   "name": "zju-library",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "awmleer",
+  "homepage": "https://github.com/awmleer/zju-library",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -61,7 +60,6 @@
     "graceful-fs": "^4.1.11",
     "typescript": "2.6.x"
   },
-  "description": "An Ionic project",
   "cordova": {
     "plugins": {
       "ionic-plugin-keyboard": {},
