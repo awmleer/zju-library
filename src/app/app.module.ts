@@ -23,7 +23,6 @@ import {AboutPageModule} from "../pages/about/about.module";
 import {MePage} from "../pages/me/me";
 import {LoginPageModule} from "../pages/login/login.module";
 import {BorrowHistoryPageModule} from "../pages/borrow-history/borrow-history.module";
-import {CookieModule} from "ngx-cookie";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {BookItemsPageModule} from "../pages/book-items/book-items.module";
 import {Clipboard} from "@ionic-native/clipboard";
@@ -43,7 +42,6 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    CookieModule.forRoot(),
     BookDetailPageModule,
     BookSearchPageModule,
     AboutPageModule,
