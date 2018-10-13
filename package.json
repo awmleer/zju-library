@@ -49,14 +49,14 @@
     "ionic-angular": "3.x",
     "ionic-native-http-connection-backend": "^4.0.7",
     "ionic-plugin-keyboard": "^2.2.1",
-    "ionicons": "4.x",
+    "ionicons": "3.x",
     "rxjs": "5.5.x",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.x"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.x",
-    "ionic": "4.2.x",
+    "ionic": "3.x",
     "typescript": "2.6.x"
   },
   "description": "An Ionic project",

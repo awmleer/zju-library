@@ -1,6 +1,6 @@
 export const CONST={
   libraryUrl:window['cordova']?'http://webpac.zju.edu.cn':'/zju',
-  ossUrl:'http://qiniu.zjulibrary.sparker.top',
+  ossUrl:'http://qiniu.zjulibrary.sparker.xyz',
   doubanUrl:window['cordova']?'https://api.douban.com':'/douban',
   version:{
     major:1,
