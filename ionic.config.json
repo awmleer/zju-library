@@ -13,5 +13,6 @@
       "path": "/douban",
       "proxyUrl": "https://api.douban.com"
     }
-  ]
+  ],
+  "npmClient": "yarn"
 }
