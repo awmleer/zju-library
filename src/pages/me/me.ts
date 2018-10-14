@@ -7,6 +7,7 @@ import {ToastService} from "../../services/toast.service";
 import {UpdateService} from "../../services/update.service";
 import {BorrowHistoryPage} from "../borrow-history/borrow-history";
 import {SocialSharing} from "@ionic-native/social-sharing";
+import {SignupPage} from '../signup/signup'
 
 
 @Component({
@@ -42,11 +43,15 @@ export class MePage {
 
   logout(){
     this.accountSvc.logout();
-    this.toastSvc.toast('已成功退出登录');
+    this.toastSvc.toast('已退出登录');
   }
 
   goLoginPage(){
     this.navCtrl.push(LoginPage);
+  }
+
+  goSignUpPage() {
+    this.navCtrl.push(SignupPage);
   }
 
   goBorrowHistoryPage(){

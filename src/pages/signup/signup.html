@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>注册</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>账号</ion-label>
+      <ion-input type="text" placeholder="请输入" [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>密码</ion-label>
+      <ion-input type="password" placeholder="请输入" [(ngModel)]="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>确认密码</ion-label>
+      <ion-input type="password" placeholder="请输入" [(ngModel)]="passwordRepeat"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div style="padding: 0 10px;margin-top: -10px">
+    <button ion-button block color="dark" (click)="signUp()">
+      注册
+    </button>
+  </div>
+</ion-content>

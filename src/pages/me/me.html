@@ -13,7 +13,7 @@
     <p>
       <span *ngIf="!user">未登录</span>
       <span *ngIf="user">
-        {{user.name}}<br>{{user.studentId}}
+        {{user.getUsername()}}
       </span>
     </p>
   </div>
@@ -30,6 +30,10 @@
     <button ion-item (click)="goLoginPage()" *ngIf="!user">
       <ion-icon name="ios-log-in" item-start></ion-icon>
       登录
+    </button>
+    <button ion-item (click)="goSignUpPage()" *ngIf="!user">
+      <ion-icon name="ios-person-add-outline" item-start></ion-icon>
+      注册
     </button>
     <button ion-item (click)="logout()" *ngIf="user">
       <ion-icon name="ios-log-out" item-start></ion-icon>

@@ -30,6 +30,7 @@ import {AppRate} from "@ionic-native/app-rate";
 import {HttpBackend, HttpClientModule, HttpXhrBackend} from '@angular/common/http';
 import {NativeHttpBackend, NativeHttpFallback, NativeHttpModule} from 'ionic-native-http-connection-backend'
 import {LeanService} from '../services/lean.service'
+import {SignupPageModule} from '../pages/signup/signup.module'
 
 @NgModule({
   declarations: [
@@ -49,9 +50,10 @@ import {LeanService} from '../services/lean.service'
     BookSearchPageModule,
     AboutPageModule,
     LoginPageModule,
+    SignupPageModule,
     BorrowHistoryPageModule,
     BookItemsPageModule,
-    ComponentsModule
+    ComponentsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

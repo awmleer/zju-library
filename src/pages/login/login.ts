@@ -29,6 +29,7 @@ export class LoginPage {
     await loading.present();
     try {
       await this.accountSvc.logIn(this.username,this.password);
+      await loading.dismiss();
       await this.navCtrl.pop();
       await this.toastSvc.toast('登录成功');
     } catch(e) {

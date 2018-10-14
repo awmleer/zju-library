@@ -41,9 +41,6 @@ export class MyApp {
         };
         appRate.promptForRating(false);
       }
-      accountSvc.autoLogin().catch(() => {
-        toastSvc.toast('尝试自动登录失败');
-      });
     });
   }
 }
