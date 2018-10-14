@@ -22,7 +22,6 @@ import {AccountService} from "../services/account.service";
 import {AboutPageModule} from "../pages/about/about.module";
 import {MePage} from "../pages/me/me";
 import {LoginPageModule} from "../pages/login/login.module";
-import {BorrowHistoryPageModule} from "../pages/borrow-history/borrow-history.module";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {BookItemsPageModule} from "../pages/book-items/book-items.module";
 import {Clipboard} from "@ionic-native/clipboard";
@@ -51,7 +50,6 @@ import {SignupPageModule} from '../pages/signup/signup.module'
     AboutPageModule,
     LoginPageModule,
     SignupPageModule,
-    BorrowHistoryPageModule,
     BookItemsPageModule,
     ComponentsModule,
   ],

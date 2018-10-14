@@ -5,7 +5,6 @@ import {AboutPage} from "../about/about";
 import {LoginPage} from "../login/login";
 import {ToastService} from "../../services/toast.service";
 import {UpdateService} from "../../services/update.service";
-import {BorrowHistoryPage} from "../borrow-history/borrow-history";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {SignupPage} from '../signup/signup'
 
@@ -52,10 +51,6 @@ export class MePage {
 
   goSignUpPage() {
     this.navCtrl.push(SignupPage);
-  }
-
-  goBorrowHistoryPage(){
-      this.navCtrl.push(BorrowHistoryPage);
   }
 
   goAboutPage(){
