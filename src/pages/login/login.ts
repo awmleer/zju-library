@@ -32,8 +32,6 @@ export class LoginPage {
       await this.navCtrl.pop();
       await this.toastSvc.toast('登录成功');
     } catch(e) {
-      console.log(111);
-      console.log(e);
       await loading.dismiss();
       await this.toastSvc.toast('登录失败');
     }
