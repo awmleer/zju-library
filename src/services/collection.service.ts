@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Storage} from '@ionic/storage';
 import {BookCollection} from '../classes/collection';
 import {AccountService} from './account.service'
 import {BookDetail} from '../classes/book'
@@ -10,7 +9,6 @@ export class CollectionService {
   collections:BookCollection[] = null;
 
   constructor(
-    private storage: Storage,
     private accountSvc: AccountService,
     private leanSvc: LeanService,
   ) {
@@ -30,10 +28,6 @@ export class CollectionService {
     const query = this.getQuery();
     query.equalTo('userId', this.accountSvc.user.id);
     this.collections = await query.find();
-  }
-
-  saveCollections():Promise<void>{
-    return this.storage.set('collections',this.collections);
   }
 
   async getCollection(bookId: string): Promise<BookCollection> {
