@@ -29,28 +29,15 @@
         </span>
         </a>
       </div>
-      <div *ngIf="collections.length==0" class="placeholder">
-        <ion-icon name="ios-folder-open-outline"></ion-icon>
-        <br><br>
-        收藏夹空空如也
-      </div>
+      <page-placeholder *ngIf="collections.length==0" icon="ios-folder-open-outline" text="收藏夹空空如也"></page-placeholder>
     </ng-container>
     <ng-container *ngIf="collections === null">
-      <!--TODO separate this to ListPlaceholderComponent-->
-      <div class="placeholder">
-        <ion-icon name="ios-radio-outline"></ion-icon>
-        <br><br>
-        加载中
-      </div>
+      <page-placeholder icon="ios-radio-outline" text="加载中"></page-placeholder>
     </ng-container>
   </ng-container>
 
   <ng-container *ngIf="!accountSvc.user">
-    <div class="placeholder">
-      <ion-icon name="ios-cloud-circle-outline"></ion-icon>
-      <br><br>
-      登录后查看收藏夹
-    </div>
+    <page-placeholder icon="ios-cloud-circle-outline" text="登录后查看收藏夹"></page-placeholder>
   </ng-container>
 
 </ion-content>
