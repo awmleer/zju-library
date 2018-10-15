@@ -7,27 +7,24 @@ import {BookDetail} from '../classes/book'
 
 @Injectable()
 export class CollectionService {
-  collections:BookCollection[]=[];
+  collections:BookCollection[] = null;
 
   constructor(
     private storage: Storage,
     private accountSvc: AccountService,
   ) {
     this.freshenCollections();
+    this.accountSvc.userChanged$.subscribe(() => {
+      this.collections = null;
+      this.freshenCollections();
+    });
   }
 
   async freshenCollections(): Promise<void> {
-    const query = new AV.Query<BookCollection>('BookCollection');
-    // query.include('owner');
-    // query.include('image');
-    // query.descending('createdAt');
-    // query.find().then(function (collections) {
-    //   console.log(collections);
-    // }).catch(function(error) {
-    //   alert(JSON.stringify(error));
-    // });
+    if (!this.accountSvc.user) return;
+    const query = new AV.Query(BookCollection);
+    query.equalTo('userId', this.accountSvc.user.id);
     this.collections = await query.find();
-    console.log(this.collections);
   }
 
   saveCollections():Promise<void>{
@@ -39,7 +36,7 @@ export class CollectionService {
       return false;
     }
     for(let collection of this.collections){
-      if (bookId == collection.bookId) {
+      if (bookId == collection.attributes.bookId) {
         return true;
       }
     }

@@ -1,15 +1,24 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import {CONST} from "../app/const";
 import {Storage} from "@ionic/storage";
 import {HttpClient} from "@angular/common/http";
 import {LeanService} from './lean.service'
 import {User} from 'leancloud-storage'
+import {BehaviorSubject, Subject} from 'rxjs'
 
 
 @Injectable()
 export class AccountService {
-  user: User = null;
+  _user: User;
+  userChanged$ = new EventEmitter<void>(null);
+  get user() {
+    return this._user;
+  }
+  set user(u: User) {
+    this._user = u;
+    this.userChanged$.next();
+  }
 
   constructor(
     private http: HttpClient,
@@ -31,7 +40,7 @@ export class AccountService {
     this.user = null;
   }
 
-  freshenUserInfo() {
+  freshenUser() {
     this.user = this.leanSvc.AV.User.current();
   }
 
