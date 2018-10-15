@@ -27,8 +27,8 @@
     </div>
   </div>
 
-  <button *ngIf="bookLoaded" class="button-collect" ion-button clear icon-only color="white" (click)="toggleCollect()">
-    <ion-icon [name]="isCollected?'md-heart':'md-heart-outline'"></ion-icon>
+  <button *ngIf="bookLoaded" class="button-collect" ion-button clear icon-only color="white" (click)="toggleCollect()" [disabled]="disableCollect">
+    <ion-icon [name]="collection?'md-heart':'md-heart-outline'"></ion-icon>
   </button>
 
   <ion-card *ngIf="bookLoaded" class="card-book-detail">

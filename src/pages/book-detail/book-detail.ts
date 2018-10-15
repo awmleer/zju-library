@@ -5,6 +5,7 @@ import {BookDetail, BookDouban, BookItem} from "../../classes/book";
 import {CollectionService} from "../../services/collection.service";
 import {ToastService} from "../../services/toast.service";
 import {BookItemsPage} from "../book-items/book-items";
+import {BookCollection} from '../../classes/collection'
 
 
 
@@ -18,6 +19,8 @@ export class BookDetailPage {
   douban:BookDouban;
   // items:BookItem[];
   loading:Loading;
+  collection: BookCollection = null;
+  disableCollect: boolean = true;
 
   constructor(
     public navCtrl: NavController,
@@ -41,19 +44,9 @@ export class BookDetailPage {
     return base;
   }
 
-
   get bookLoaded(){
     return (this.detail && this.detail.id);
   }
-
-  get isCollected():boolean{
-    if (this.bookLoaded) {
-      return this.collectionSvc.isCollected(this.detail.id);
-    }else{
-      return false;
-    }
-  }
-
 
   get rateRounded():number{
     return Math.round(this.douban.rating.average);
@@ -103,12 +96,15 @@ export class BookDetailPage {
     });
   }
 
-  toggleCollect(){
-    if (this.isCollected) {
-      this.collectionSvc.unCollect(this.detail.id);
+  async toggleCollect(){
+    this.disableCollect = true;
+    if (this.collection) {
+      await this.collectionSvc.unCollect(this.collection);
+      this.collection = null;
     }else{
-      this.collectionSvc.collect(this.detail);
+      this.collection = await this.collectionSvc.collect(this.detail);
     }
+    this.disableCollect = false;
   }
 
   viewBookItems(){
@@ -116,6 +112,11 @@ export class BookDetailPage {
       'id':this.id,
       'base':this.base
     });
+  }
+
+  async ionViewWillEnter() {
+    this.collection = await this.collectionSvc.getCollection(this.id);
+    this.disableCollect = false;
   }
 
 }

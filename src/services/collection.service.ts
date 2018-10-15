@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {BookCollection} from '../classes/collection';
-import * as AV from 'leancloud-storage';
 import {AccountService} from './account.service'
 import {BookDetail} from '../classes/book'
+import {LeanService} from './lean.service'
 
 @Injectable()
 export class CollectionService {
@@ -12,6 +12,7 @@ export class CollectionService {
   constructor(
     private storage: Storage,
     private accountSvc: AccountService,
+    private leanSvc: LeanService,
   ) {
     this.freshenCollections();
     this.accountSvc.userChanged$.subscribe(() => {
@@ -20,9 +21,13 @@ export class CollectionService {
     });
   }
 
+  getQuery() {
+    return new this.leanSvc.AV.Query(BookCollection);
+  }
+
   async freshenCollections(): Promise<void> {
     if (!this.accountSvc.user) return;
-    const query = new AV.Query(BookCollection);
+    const query = this.getQuery();
     query.equalTo('userId', this.accountSvc.user.id);
     this.collections = await query.find();
   }
@@ -31,19 +36,24 @@ export class CollectionService {
     return this.storage.set('collections',this.collections);
   }
 
-  isCollected(bookId:string):boolean{
-    if (!bookId) {
-      return false;
-    }
-    for(let collection of this.collections){
-      if (bookId == collection.attributes.bookId) {
-        return true;
+  async getCollection(bookId: string): Promise<BookCollection> {
+    const query = this.getQuery();
+    query.equalTo('userId', this.accountSvc.user.id);
+    query.equalTo('bookId', bookId);
+    const ret = await query.find();
+    if (ret.length > 1) {
+      for (let i = 1; i < ret.length; i++) {
+        await ret[i].destroy();
       }
+      return ret[0];
+    } else if (ret.length === 1) {
+      return ret[0];
+    } else {
+      return null;
     }
-    return false;
   }
 
-  async collect(bookDetail: BookDetail): Promise<void> {
+  async collect(bookDetail: BookDetail): Promise<BookCollection> {
     if (!this.accountSvc.user) return;
     const collection = new BookCollection();
     collection.set('userId', this.accountSvc.user.id);
@@ -54,14 +64,16 @@ export class CollectionService {
     collection.set('press', bookDetail.press.name);
     collection.set('year', bookDetail.year);
     await collection.save();
+    return collection;
   }
 
-  async unCollect(bookId:string): Promise<void> {
-
+  async unCollect(collection: BookCollection): Promise<void> {
+    await collection.destroy();
   }
 
   async deleteAllCollections(): Promise<void> {
-
+    await this.leanSvc.AV.Object.destroyAll(this.collections);
+    await this.freshenCollections();
   }
 
 }
