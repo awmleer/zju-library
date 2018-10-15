@@ -16,17 +16,7 @@ export class CollectionService {
     this.freshenCollections();
   }
 
-  freshenCollections(){
-    this.storage.get('collections').then(data=>{
-      if (Object.prototype.toString.call(data) === '[object Array]') {
-        this.collections=data;
-      }else{
-        this.collections=[];
-      }
-    });
-  }
-
-  async getCollections(): Promise<BookCollection[]> {
+  async freshenCollections(): Promise<void> {
     const query = new AV.Query<BookCollection>('BookCollection');
     // query.include('owner');
     // query.include('image');
@@ -36,7 +26,8 @@ export class CollectionService {
     // }).catch(function(error) {
     //   alert(JSON.stringify(error));
     // });
-    return await query.find();
+    this.collections = await query.find();
+    console.log(this.collections);
   }
 
   saveCollections():Promise<void>{
@@ -72,9 +63,8 @@ export class CollectionService {
 
   }
 
-  deleteAllCollections():Promise<void>{
-    this.collections=[];
-    return this.saveCollections();
+  async deleteAllCollections(): Promise<void> {
+
   }
 
 }

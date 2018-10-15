@@ -10,7 +10,6 @@ import {AccountService} from '../../services/account.service'
   templateUrl: 'collection.html'
 })
 export class CollectionPage {
-  collections: BookCollection[] = null;
 
   constructor(
     private navCtrl: NavController,
@@ -19,9 +18,13 @@ export class CollectionPage {
     public accountSvc: AccountService,
   ) {}
 
+  get collections(): BookCollection[] {
+    return this.collectionSvc.collections;
+  }
+
   goBookDetail(bookCollection:BookCollection){
     this.navCtrl.push(BookDetailPage,{
-      'id':bookCollection.bookId
+      'id':bookCollection.attributes.bookId
     });
   }
 
@@ -44,7 +47,7 @@ export class CollectionPage {
   }
 
   async ionViewWillEnter() {
-    this.collections = await this.collectionSvc.getCollections();
+    this.collectionSvc.freshenCollections();
   }
 
 }

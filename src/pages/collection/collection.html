@@ -19,13 +19,13 @@
       <span class="total-count">
         共{{collections.length}}条收藏
       </span>
-        <a class="book-collection" *ngFor="let bookCollection of collections" (click)="goBookDetail(bookCollection)">
+        <a class="book-collection" *ngFor="let collection of collections" (click)="goBookDetail(collection)">
           <h2>
-            {{bookCollection.title}}
+            {{collection.attributes.title}}
           </h2>
           <span>
-          {{bookCollection.author}} {{bookCollection.classNumber}}<br>
-          {{bookCollection.press}} {{bookCollection.year}}
+          {{collection.attributes.author}} {{collection.attributes.classNumber}}<br>
+          {{collection.attributes.press}} {{collection.attributes.year}}
         </span>
         </a>
       </div>
@@ -36,6 +36,7 @@
       </div>
     </ng-container>
     <ng-container *ngIf="collections === null">
+      <!--TODO separate this to ListPlaceholderComponent-->
       <div class="placeholder">
         <ion-icon name="ios-radio-outline"></ion-icon>
         <br><br>
