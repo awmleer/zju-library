@@ -37,7 +37,10 @@
   </ng-container>
 
   <ng-container *ngIf="!accountSvc.user">
-    <page-placeholder icon="ios-cloud-circle-outline" text="登录后查看收藏夹"></page-placeholder>
+    <div style="text-align: center">
+      <page-placeholder icon="ios-cloud-circle-outline" text="登录后查看收藏夹"></page-placeholder>
+      <button ion-button outline color="dark" (click)="goLoginPage()">登录</button>
+    </div>
   </ng-container>
 
 </ion-content>

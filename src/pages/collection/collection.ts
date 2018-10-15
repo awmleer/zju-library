@@ -4,6 +4,7 @@ import {CollectionService} from "../../services/collection.service";
 import {BookCollection} from "../../classes/collection";
 import {BookDetailPage} from "../book-detail/book-detail";
 import {AccountService} from '../../services/account.service'
+import {LoginPage} from '../login/login'
 
 @Component({
   selector: 'page-collection',
@@ -26,6 +27,10 @@ export class CollectionPage {
     this.navCtrl.push(BookDetailPage,{
       'id':bookCollection.attributes.bookId
     });
+  }
+
+  goLoginPage() {
+    this.navCtrl.push(LoginPage);
   }
 
   deleteAllCollections(){
