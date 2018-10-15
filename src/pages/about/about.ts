@@ -25,7 +25,7 @@ export class AboutPage {
   ) {}
 
   openGitHubLink(){
-    this.inAppBrowser.create('https://github.com/awmleer/zjuLibrary','_system');
+    this.inAppBrowser.create('https://github.com/awmleer/zju-library','_system');
   }
 
   copyToClipboard(text:string){
