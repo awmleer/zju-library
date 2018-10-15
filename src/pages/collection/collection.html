@@ -4,7 +4,7 @@
       收藏
     </ion-title>
     <ion-buttons end>
-      <button *ngIf="bookCollections.length>0" ion-button icon-only (click)="deleteAllCollections()">
+      <button *ngIf="collections?.length>0" ion-button icon-only (click)="deleteAllCollections()">
         <ion-icon name="trash"></ion-icon>
       </button>
     </ion-buttons>
@@ -12,24 +12,44 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="book-collection-group" *ngIf="bookCollections.length>0">
-    <span class="total-count">
-      共{{bookCollections.length}}条收藏
-    </span>
-    <a class="book-collection" *ngFor="let bookCollection of bookCollections" (click)="goBookDetail(bookCollection)">
-      <h2>
-        {{bookCollection.title}}
-      </h2>
-      <span>
-        {{bookCollection.author}} {{bookCollection.classNumber}}<br>
-        {{bookCollection.press}} {{bookCollection.year}}
-      </span>
-    </a>
-  </div>
 
-  <div *ngIf="bookCollections.length==0" class="no-collection">
-    <ion-icon name="ios-folder-open-outline"></ion-icon>
-    <br><br>
-    收藏夹空空如也
-  </div>
+  <ng-container *ngIf="accountSvc.user">
+    <ng-container *ngIf="collections !== null">
+      <div class="book-collection-group" *ngIf="collections.length>0">
+      <span class="total-count">
+        共{{collections.length}}条收藏
+      </span>
+        <a class="book-collection" *ngFor="let bookCollection of collections" (click)="goBookDetail(bookCollection)">
+          <h2>
+            {{bookCollection.title}}
+          </h2>
+          <span>
+          {{bookCollection.author}} {{bookCollection.classNumber}}<br>
+          {{bookCollection.press}} {{bookCollection.year}}
+        </span>
+        </a>
+      </div>
+      <div *ngIf="collections.length==0" class="placeholder">
+        <ion-icon name="ios-folder-open-outline"></ion-icon>
+        <br><br>
+        收藏夹空空如也
+      </div>
+    </ng-container>
+    <ng-container *ngIf="collections === null">
+      <div class="placeholder">
+        <ion-icon name="ios-radio-outline"></ion-icon>
+        <br><br>
+        加载中
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="!accountSvc.user">
+    <div class="placeholder">
+      <ion-icon name="ios-cloud-circle-outline"></ion-icon>
+      <br><br>
+      登录后查看收藏夹
+    </div>
+  </ng-container>
+
 </ion-content>

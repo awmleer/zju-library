@@ -3,22 +3,21 @@ import {AlertController, NavController} from 'ionic-angular';
 import {CollectionService} from "../../services/collection.service";
 import {BookCollection} from "../../classes/collection";
 import {BookDetailPage} from "../book-detail/book-detail";
+import {AccountService} from '../../services/account.service'
 
 @Component({
   selector: 'page-collection',
   templateUrl: 'collection.html'
 })
 export class CollectionPage {
+  collections: BookCollection[] = null;
 
   constructor(
     private navCtrl: NavController,
     private alertCtrl: AlertController,
-    private collectionSvc: CollectionService
+    private collectionSvc: CollectionService,
+    public accountSvc: AccountService,
   ) {}
-
-  get bookCollections():BookCollection[]{
-    return this.collectionSvc.collections;
-  }
 
   goBookDetail(bookCollection:BookCollection){
     this.navCtrl.push(BookDetailPage,{
@@ -42,6 +41,10 @@ export class CollectionPage {
         }
       ]
     }).present();
+  }
+
+  async ionViewWillEnter() {
+    this.collections = await this.collectionSvc.getCollections();
   }
 
 }

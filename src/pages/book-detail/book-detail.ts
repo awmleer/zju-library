@@ -107,14 +107,7 @@ export class BookDetailPage {
     if (this.isCollected) {
       this.collectionSvc.unCollect(this.detail.id);
     }else{
-      this.collectionSvc.collect({
-        bookId:this.detail.id,
-        title:this.detail.title,
-        author:this.detail.author,
-        classNumber:this.detail.classNumber,
-        press:this.detail.press.name,
-        year:this.detail.year
-      });
+      this.collectionSvc.collect(this.detail);
     }
   }
 
