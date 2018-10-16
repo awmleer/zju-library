@@ -8,7 +8,7 @@ export const CONST={
   },
   version:{
     major:1,
-    minor:2,
-    patch:1
+    minor:3,
+    patch:0
   }
 };
