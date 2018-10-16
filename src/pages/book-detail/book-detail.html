@@ -72,7 +72,7 @@
     <button ion-button block outline color="dark" (click)="viewBookItems()">查看单册状态</button>
     <h3>简介</h3>
     <div class="book-intro">
-      <img [src]="douban.image">
+      <!--<img [src]="douban.image">-->
       <p [innerText]="douban.summary"></p>
       <p *ngIf="!douban.summary">暂无</p>
     </div>
