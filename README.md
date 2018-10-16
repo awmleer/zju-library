@@ -8,23 +8,29 @@
 
 ## 架构说明
 
-这是一个基于ionic的hybrid app，无后端设计，所有的请求均为app直接请求浙大图书馆的API。
+这是一个基于ionic框架的hybrid app
 
-### 依赖
+接口主要来自于：
 
-- ionic v3+
-- cordova-plugin-inappbrowser
-- cordova-sqlite-storage
-- 其他详见`package.json`&`config.xml`
+1. 浙大图书馆的API
+2. 豆瓣开放API
+3. 通过leanCloud搭建的后端
+
 
 ## 命令&脚本说明
 
 ### 环境配置
 
 ```bash
-$ sudo npm install -g ionic cordova
+$ yarn global add ionic cordova
+$ yarn install
+```
+
+或者
+
+```bash
+$ npm install -g ionic cordova
 $ npm install
-$ ionic cordova plugin add xxx(具体的插件列表请看依赖)
 ```
 
 ### 开始开发
@@ -49,18 +55,6 @@ $ ionic cordova build ios --prod
 ```bash
 $ qshell -m fput zjulibrary apk/zjuLibraryLatest.apk apk/zjuLibraryx.x.x.apk true
 ```
-
-## Commit Notation
-
-- [+] add
-- [-] remove
-- [=] update
-- [$] init
-- [#] document
-- [^] improve
-- [~] refactor
-- [!] fix
-- [*] try
 
 
 注：
