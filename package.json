@@ -29,7 +29,7 @@
     "@ionic-native/splash-screen": "4.x",
     "@ionic-native/status-bar": "4.x",
     "@ionic/storage": "2.x",
-    "cordova-android": "6.x",
+    "cordova-android": "7.1.1",
     "cordova-clipboard": "^1.2.1",
     "cordova-ios": "4.5.x",
     "cordova-plugin-advanced-http": "2.0.1",

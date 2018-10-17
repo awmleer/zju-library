@@ -56,6 +56,11 @@ $ ionic cordova build ios --prod
 $ qshell -m fput zjulibrary apk/zjuLibraryLatest.apk apk/zjuLibraryx.x.x.apk true
 ```
 
+### 上传主页
+
+```bash
+$ qshell qupload homepageUpload.config.json
+```
 
 注：
 
