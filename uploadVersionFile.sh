@@ -1,1 +1,1 @@
-qshell -m fput zjulibrary version.json version.json true
+qshell fput zjulibrary version.json version.json true
