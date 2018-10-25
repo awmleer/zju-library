@@ -31,7 +31,7 @@
     "@ionic/storage": "2.x",
     "cordova-android": "7.1.1",
     "cordova-clipboard": "^1.2.1",
-    "cordova-ios": "4.5.x",
+    "cordova-ios": "4.5.5",
     "cordova-plugin-advanced-http": "2.0.1",
     "cordova-plugin-apprate": "^1.4.0",
     "cordova-plugin-console": "^1.1.0",
@@ -79,8 +79,8 @@
       "cordova-plugin-splashscreen": {}
     },
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
