@@ -30,7 +30,7 @@ export class BookSearchPage {
     private loadingCtrl: LoadingController,
     private toastSvc: ToastService
   ) {
-    this.searchText=navParams.get('searchText');
+    this.searchText=this.navParams.get('searchText');
   }
 
   ionViewDidLoad() {

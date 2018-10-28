@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
-import {LeanService} from '../../services/lean.service'
+import {IonicPage, LoadingController, NavController} from 'ionic-angular';
 import {ToastService} from '../../services/toast.service'
 import {AccountService} from '../../services/account.service'
 

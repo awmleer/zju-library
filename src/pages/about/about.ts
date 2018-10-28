@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, Platform} from 'ionic-angular';
+import {AlertController, IonicPage, Platform} from 'ionic-angular';
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {CONST} from "../../app/const";
 import {UpdateService} from "../../services/update.service";
@@ -15,7 +15,6 @@ export class AboutPage {
   version=CONST.version;
 
   constructor(
-    private navCtrl: NavController,
     public updateSvc: UpdateService,
     private platform: Platform,
     private alertCtrl: AlertController,

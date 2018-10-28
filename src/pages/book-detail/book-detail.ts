@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import {IonicPage, Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {LibraryService} from "../../services/library.service";
-import {BookDetail, BookDouban, BookItem} from "../../classes/book";
+import {BookDetail, BookDouban} from "../../classes/book";
 import {CollectionService} from "../../services/collection.service";
 import {ToastService} from "../../services/toast.service";
 import {BookItemsPage} from "../book-items/book-items";
 import {BookCollection} from '../../classes/collection'
-
 
 
 @IonicPage()

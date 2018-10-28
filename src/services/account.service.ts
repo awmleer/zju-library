@@ -1,12 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import 'rxjs/add/operator/toPromise';
-import {CONST} from "../app/const";
-import {Storage} from "@ionic/storage";
-import {HttpClient} from "@angular/common/http";
 import {LeanService} from './lean.service'
 import {User} from 'leancloud-storage'
-import {BehaviorSubject, Subject} from 'rxjs'
-
 
 @Injectable()
 export class AccountService {
@@ -21,7 +15,6 @@ export class AccountService {
   }
 
   constructor(
-    private http: HttpClient,
     private leanSvc: LeanService,
   ) {
     this.freshenUser();
