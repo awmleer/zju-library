@@ -30,6 +30,7 @@ import {HttpBackend, HttpClientModule, HttpXhrBackend} from '@angular/common/htt
 import {NativeHttpBackend, NativeHttpFallback, NativeHttpModule} from 'ionic-native-http-connection-backend'
 import {LeanService} from '../services/lean.service'
 import {SignupPageModule} from '../pages/signup/signup.module'
+import {ChangePasswordPageModule} from '../pages/change-password/change-password.module'
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import {SignupPageModule} from '../pages/signup/signup.module'
     LoginPageModule,
     SignupPageModule,
     BookItemsPageModule,
+    ChangePasswordPageModule,
     ComponentsModule,
   ],
   bootstrap: [IonicApp],

@@ -24,7 +24,7 @@ export class AccountService {
     private http: HttpClient,
     private leanSvc: LeanService,
   ) {
-    this.user = this.leanSvc.AV.User.current();
+    this.freshenUser();
   }
 
   async logIn(username:string, password:string):Promise<void>{
@@ -40,8 +40,15 @@ export class AccountService {
     this.user = null;
   }
 
-  freshenUser() {
-    this.user = this.leanSvc.AV.User.current();
+  async freshenUser() {
+    this.user = await this.leanSvc.AV.User.currentAsync();
+  }
+
+  async changePassword(newPassword: string) {
+    const username = this.user.getUsername();
+    this.user.setPassword(newPassword);
+    await this.user.save();
+    await this.logIn(username, newPassword);
   }
 
 }

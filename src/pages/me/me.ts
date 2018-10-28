@@ -7,6 +7,7 @@ import {ToastService} from "../../services/toast.service";
 import {UpdateService} from "../../services/update.service";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {SignupPage} from '../signup/signup'
+import {ChangePasswordPage} from '../change-password/change-password'
 
 
 @Component({
@@ -55,6 +56,10 @@ export class MePage {
 
   goAboutPage(){
     this.navCtrl.push(AboutPage);
+  }
+
+  goChangePasswordPage() {
+    this.navCtrl.push(ChangePasswordPage);
   }
 
 }

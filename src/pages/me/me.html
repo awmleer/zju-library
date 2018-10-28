@@ -19,18 +19,26 @@
   </div>
 
   <ion-list>
-    <button ion-item (click)="goLoginPage()" *ngIf="!user">
-      <ion-icon name="ios-log-in" item-start></ion-icon>
-      登录
-    </button>
-    <button ion-item (click)="goSignUpPage()" *ngIf="!user">
-      <ion-icon name="ios-person-add-outline" item-start></ion-icon>
-      注册
-    </button>
-    <button ion-item (click)="logout()" *ngIf="user">
-      <ion-icon name="ios-log-out" item-start></ion-icon>
-      退出登录
-    </button>
+    <ng-container *ngIf="!user">
+      <button ion-item (click)="goLoginPage()">
+        <ion-icon name="ios-log-in" item-start></ion-icon>
+        登录
+      </button>
+      <button ion-item (click)="goSignUpPage()">
+        <ion-icon name="ios-person-add-outline" item-start></ion-icon>
+        注册
+      </button>
+    </ng-container>
+    <ng-container *ngIf="user">
+      <button ion-item (click)="goChangePasswordPage()">
+        <ion-icon name="ios-key-outline" item-start></ion-icon>
+        修改密码
+      </button>
+      <button ion-item (click)="logout()">
+        <ion-icon name="ios-log-out" item-start></ion-icon>
+        退出登录
+      </button>
+    </ng-container>
     <button ion-item (click)="shareApp()">
       <ion-icon name="ios-beer-outline" item-start></ion-icon>
       把 浙图 分享给好友
